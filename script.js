@@ -2,8 +2,8 @@
 
 // Download functionality
 function downloadApp() {
-    // APK filename
-    const apkUrl = './vozvibe.apk';
+    // APK hosted on Google Drive
+    const apkUrl = 'https://drive.google.com/uc?export=download&id=1KqUNR-1kFWOg3DE6xmAfv8Bt9BO4cYCH';
     
     // Create a temporary link element to trigger download
     const link = document.createElement('a');
