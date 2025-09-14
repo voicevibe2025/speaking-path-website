@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VozVibe - Download App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <img src="vozvibe_logo2.png" alt="VozVibe Logo" class="app-logo">
+                </div>
+                <h1 class="app-title">VozVibe</h1>
+            </div>
+            <p class="tagline">Master Your Voice, Unlock Your Potential</p>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <h2 class="welcome-title">Welcome to VozVibe</h2>
+                <p class="description">
+                    Transform your speaking skills with AI-powered pronunciation practice, 
+                    fluency analysis, and personalized feedback. Perfect for students, professionals, 
+                    and anyone looking to improve their communication skills.
+                </p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI-Powered Learning</h3>
+                        <p>Advanced AI provides personalized feedback and pronunciation analysis</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Progress Tracking</h3>
+                        <p>Monitor your improvement with detailed analytics and leaderboards</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Interactive Practice</h3>
+                        <p>Engage in conversation practice and vocabulary lessons</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="download-section">
+                <div class="download-card">
+                    <div class="download-header">
+                        <h2>Download VozVibe App</h2>
+                        <p>Get the latest version for Android devices</p>
+                    </div>
+                    
+                    <div class="download-info">
+                        <div class="app-info">
+                            <div class="app-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="app-details">
+                                <h3>VozVibe for Android</h3>
+                                <p class="version-info">Version 1.0.0</p>
+                                <p class="file-size">119.4 MB</p>
+                                <p class="compatibility">Android 7.0+ required</p>
+                            </div>
+                        </div>
+                        
+                        <div class="download-buttons">
+                            <button class="download-btn primary" onclick="downloadApp()">
+                                <i class="fas fa-download"></i>
+                                Download APK
+                            </button>
+                            <button class="download-btn secondary" onclick="showInstallGuide()">
+                                <i class="fas fa-question-circle"></i>
+                                Installation Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="warning-notice">
+                    <div class="notice-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Important Security Notice</h4>
+                            <p>Since this app is not distributed through Google Play Store, you'll need to enable "Install from unknown sources" in your Android settings. This is completely safe for our official VozVibe app.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="install-guide" id="installGuide" style="display: none;">
+                <div class="guide-card">
+                    <h3>Installation Instructions</h3>
+                    <ol class="install-steps">
+                        <li>
+                            <strong>Download the APK file</strong>
+                            <p>Click the "Download APK" button above to download VozVibe.apk to your device</p>
+                        </li>
+                        <li>
+                            <strong>Enable Unknown Sources</strong>
+                            <p>Go to Settings > Security > Unknown Sources and enable it (steps may vary by device)</p>
+                        </li>
+                        <li>
+                            <strong>Install the App</strong>
+                            <p>Open the downloaded APK file and follow the installation prompts</p>
+                        </li>
+                        <li>
+                            <strong>Start Learning</strong>
+                            <p>Launch VozVibe and create your account to begin your speaking journey</p>
+                        </li>
+                    </ol>
+                    <button class="close-guide" onclick="hideInstallGuide()">
+                        <i class="fas fa-times"></i> Close Guide
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 VozVibe. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#support">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

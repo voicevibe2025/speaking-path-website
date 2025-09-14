@@ -1,0 +1,7 @@
+# Ignore APK files - too large for GitHub
+*.apk
+
+# Ignore other large files
+*.zip
+*.rar
+*.7z
