@@ -3,7 +3,7 @@
 // Download functionality
 function downloadApp() {
     // APK hosted on Google Drive
-    const apkUrl = 'https://drive.google.com/uc?export=download&id=1KqUNR-1kFWOg3DE6xmAfv8Bt9BO4cYCH';
+    const apkUrl = 'https://drive.google.com/uc?export=download&id=143cvsYjbxV0UxhhMRDaDkKE0yk-B6O16';
     
     // Create a temporary link element to trigger download
     const link = document.createElement('a');
