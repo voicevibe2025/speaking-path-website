@@ -2,107 +2,142 @@
 
 let currentFile = null;
 let currentFileBlob = null;
+let currentGDriveFileId = null;
+let currentGDriveUrl = null;
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Article page loaded');
-    initializeUpload();
     loadSavedFeedback();
+    loadSavedGDriveLink();
 });
 
-// Initialize upload functionality
-function initializeUpload() {
-    const uploadArea = document.getElementById('uploadArea');
-    const fileInput = document.getElementById('fileInput');
+// Extract Google Drive File ID from URL or ID
+function extractGDriveFileId(input) {
+    input = input.trim();
     
-    // Drag and drop events
-    uploadArea.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        uploadArea.classList.add('drag-over');
-    });
+    // If it's already just a file ID (no slashes or protocols)
+    if (!input.includes('/') && !input.includes(':')) {
+        return input;
+    }
     
-    uploadArea.addEventListener('dragleave', function(e) {
-        e.preventDefault();
-        uploadArea.classList.remove('drag-over');
-    });
+    // Extract from various Google Drive URL formats
+    const patterns = [
+        /\/file\/d\/([a-zA-Z0-9_-]+)/,  // /file/d/FILE_ID
+        /id=([a-zA-Z0-9_-]+)/,           // id=FILE_ID
+        /\/open\?id=([a-zA-Z0-9_-]+)/,  // /open?id=FILE_ID
+        /\/d\/([a-zA-Z0-9_-]+)/          // /d/FILE_ID
+    ];
     
-    uploadArea.addEventListener('drop', function(e) {
-        e.preventDefault();
-        uploadArea.classList.remove('drag-over');
+    for (const pattern of patterns) {
+        const match = input.match(pattern);
+        if (match && match[1]) {
+            return match[1];
+        }
+    }
+    
+    return null;
+}
+
+// Load document from Google Drive
+async function loadFromGoogleDrive() {
+    const gdriveInput = document.getElementById('gdriveInput');
+    const input = gdriveInput.value.trim();
+    
+    if (!input) {
+        showNotification('Please enter a Google Drive link or File ID', 'error');
+        return;
+    }
+    
+    const fileId = extractGDriveFileId(input);
+    
+    if (!fileId) {
+        showNotification('Invalid Google Drive link or File ID', 'error');
+        return;
+    }
+    
+    // Show loading
+    showNotification('Loading document from Google Drive...', 'info');
+    
+    try {
+        // Use Google Drive direct download URL (requires public sharing)
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
         
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            handleFileSelect(files[0]);
+        const response = await fetch(downloadUrl);
+        
+        if (!response.ok) {
+            throw new Error('Failed to download file. Make sure the file is shared as "Anyone with the link can view"');
         }
-    });
-    
-    // Click to upload
-    uploadArea.addEventListener('click', function() {
-        fileInput.click();
-    });
-    
-    // File input change
-    fileInput.addEventListener('change', function(e) {
-        if (e.target.files.length > 0) {
-            handleFileSelect(e.target.files[0]);
+        
+        const blob = await response.blob();
+        
+        // Check if it's a .docx file
+        if (!blob.type.includes('wordprocessingml') && !blob.type.includes('application/octet-stream')) {
+            throw new Error('File does not appear to be a Word document (.docx)');
         }
-    });
+        
+        // Store the file
+        currentFileBlob = blob;
+        currentGDriveFileId = fileId;
+        currentGDriveUrl = `https://drive.google.com/file/d/${fileId}/view`;
+        
+        // Save to localStorage
+        localStorage.setItem('gdriveFileId', fileId);
+        localStorage.setItem('gdriveUrl', currentGDriveUrl);
+        localStorage.setItem('gdriveLoadTime', new Date().toISOString());
+        
+        // Display file info
+        displayGDriveFileInfo();
+        
+        showNotification('Document loaded successfully from Google Drive!', 'success');
+        
+    } catch (error) {
+        console.error('Error loading from Google Drive:', error);
+        showNotification(error.message || 'Failed to load document from Google Drive', 'error');
+    }
 }
 
-// Handle file selection
-function handleFileSelect(file) {
-    // Validate file type
-    if (!file.name.endsWith('.docx')) {
-        showNotification('Please upload a .docx file (Microsoft Word format)', 'error');
-        return;
-    }
-    
-    // Validate file size (max 10MB)
-    const maxSize = 10 * 1024 * 1024; // 10MB
-    if (file.size > maxSize) {
-        showNotification('File size exceeds 10MB limit', 'error');
-        return;
-    }
-    
-    currentFile = file;
-    currentFileBlob = file;
-    
-    // Display file info
-    displayFileInfo(file);
-    
-    // Save to localStorage for persistence
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        try {
-            localStorage.setItem('currentArticleFile', JSON.stringify({
-                name: file.name,
-                size: file.size,
-                uploadTime: new Date().toISOString(),
-                data: e.target.result
-            }));
-            showNotification('File uploaded successfully!', 'success');
-        } catch (error) {
-            console.error('Error saving file:', error);
-            showNotification('File uploaded but could not be saved for later', 'warning');
-        }
-    };
-    reader.readAsDataURL(file);
-}
-
-// Display file information
-function displayFileInfo(file) {
-    const uploadArea = document.getElementById('uploadArea');
+// Display Google Drive file information
+function displayGDriveFileInfo() {
+    const gdriveSetup = document.getElementById('gdriveSetup');
     const fileInfo = document.getElementById('fileInfo');
     const fileName = document.getElementById('fileName');
-    const fileSize = document.getElementById('fileSize');
     const uploadTime = document.getElementById('uploadTime');
     
-    uploadArea.style.display = 'none';
+    gdriveSetup.style.display = 'none';
     fileInfo.style.display = 'block';
     
-    fileName.textContent = file.name;
-    fileSize.textContent = formatFileSize(file.size);
-    uploadTime.textContent = `Uploaded: ${new Date().toLocaleString()}`;
+    fileName.textContent = 'JALT-CALL Article (Google Drive)';
+    uploadTime.textContent = `Loaded: ${new Date().toLocaleString()}`;
+}
+
+// Load saved Google Drive link
+function loadSavedGDriveLink() {
+    const savedFileId = localStorage.getItem('gdriveFileId');
+    const savedUrl = localStorage.getItem('gdriveUrl');
+    const savedTime = localStorage.getItem('gdriveLoadTime');
+    
+    if (savedFileId && savedUrl) {
+        currentGDriveFileId = savedFileId;
+        currentGDriveUrl = savedUrl;
+        
+        // Update input field
+        document.getElementById('gdriveInput').value = savedUrl;
+        
+        // Show file info
+        const gdriveSetup = document.getElementById('gdriveSetup');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const uploadTime = document.getElementById('uploadTime');
+        
+        gdriveSetup.style.display = 'none';
+        fileInfo.style.display = 'block';
+        
+        fileName.textContent = 'JALT-CALL Article (Google Drive)';
+        uploadTime.textContent = `Loaded: ${new Date(savedTime).toLocaleString()}`;
+        
+        console.log('Restored Google Drive link from previous session');
+    }
 }
 
 // Format file size
@@ -116,8 +151,8 @@ function formatFileSize(bytes) {
 
 // Display document content
 async function displayDocument() {
-    if (!currentFile) {
-        showNotification('No file selected', 'error');
+    if (!currentFileBlob && !currentGDriveFileId) {
+        showNotification('No document loaded', 'error');
         return;
     }
     
@@ -136,8 +171,20 @@ async function displayDocument() {
     documentViewer.scrollIntoView({ behavior: 'smooth' });
     
     try {
+        // If we don't have the blob, fetch it from Google Drive
+        if (!currentFileBlob && currentGDriveFileId) {
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${currentGDriveFileId}`;
+            const response = await fetch(downloadUrl);
+            
+            if (!response.ok) {
+                throw new Error('Failed to download file from Google Drive');
+            }
+            
+            currentFileBlob = await response.blob();
+        }
+        
         // Read file as array buffer
-        const arrayBuffer = await currentFile.arrayBuffer();
+        const arrayBuffer = await currentFileBlob.arrayBuffer();
         
         // Convert with mammoth.js
         const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer }, {
@@ -168,7 +215,7 @@ async function displayDocument() {
         documentContent.innerHTML = `
             <div class="loading-indicator">
                 <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
-                <p>Failed to load document. Please make sure it's a valid .docx file.</p>
+                <p>Failed to load document. Please make sure the file is shared and accessible.</p>
                 <p style="color: #64748b; font-size: 0.9rem;">${error.message}</p>
             </div>
         `;
@@ -222,40 +269,39 @@ function printDocument() {
 
 // Change file
 function changeFile() {
-    const uploadArea = document.getElementById('uploadArea');
+    const gdriveSetup = document.getElementById('gdriveSetup');
     const fileInfo = document.getElementById('fileInfo');
     const documentViewer = document.getElementById('documentViewer');
     const feedbackSection = document.getElementById('feedbackSection');
     
-    uploadArea.style.display = 'block';
+    gdriveSetup.style.display = 'block';
     fileInfo.style.display = 'none';
     documentViewer.style.display = 'none';
     feedbackSection.style.display = 'none';
     
     currentFile = null;
     currentFileBlob = null;
+    currentGDriveFileId = null;
+    currentGDriveUrl = null;
     
-    // Clear file input
-    document.getElementById('fileInput').value = '';
+    // Clear input
+    document.getElementById('gdriveInput').value = '';
+    
+    // Clear localStorage
+    localStorage.removeItem('gdriveFileId');
+    localStorage.removeItem('gdriveUrl');
+    localStorage.removeItem('gdriveLoadTime');
 }
 
-// Download current file
-function downloadCurrentFile() {
-    if (!currentFileBlob) {
-        showNotification('No file available for download', 'error');
+// Open in Google Drive
+function openInGoogleDrive() {
+    if (!currentGDriveUrl) {
+        showNotification('No Google Drive URL available', 'error');
         return;
     }
     
-    const url = URL.createObjectURL(currentFileBlob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = currentFile.name;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    showNotification('Download started!', 'success');
+    window.open(currentGDriveUrl, '_blank');
+    showNotification('Opening in Google Drive...', 'success');
 }
 
 // Submit feedback
@@ -417,43 +463,6 @@ function showNotification(message, type = 'info') {
         }
     }, 5000);
 }
-
-// Load saved file on page load
-window.addEventListener('load', function() {
-    try {
-        const savedFile = localStorage.getItem('currentArticleFile');
-        if (savedFile) {
-            const fileData = JSON.parse(savedFile);
-            
-            // Convert base64 back to file
-            fetch(fileData.data)
-                .then(res => res.blob())
-                .then(blob => {
-                    const file = new File([blob], fileData.name, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-                    currentFile = file;
-                    currentFileBlob = blob;
-                    
-                    // Display file info
-                    const uploadArea = document.getElementById('uploadArea');
-                    const fileInfo = document.getElementById('fileInfo');
-                    const fileName = document.getElementById('fileName');
-                    const fileSize = document.getElementById('fileSize');
-                    const uploadTime = document.getElementById('uploadTime');
-                    
-                    uploadArea.style.display = 'none';
-                    fileInfo.style.display = 'block';
-                    
-                    fileName.textContent = fileData.name;
-                    fileSize.textContent = formatFileSize(fileData.size);
-                    uploadTime.textContent = `Uploaded: ${new Date(fileData.uploadTime).toLocaleString()}`;
-                    
-                    console.log('Restored previously uploaded file');
-                });
-        }
-    } catch (error) {
-        console.error('Error restoring saved file:', error);
-    }
-});
 
 // Add notification styles
 const style = document.createElement('style');
