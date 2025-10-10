@@ -106,6 +106,16 @@
     line-height: 1.6;
 }
 
+.gdrive-instructions code,
+.gdrive-setup code {
+    background: #1e293b;
+    color: #06b6d4;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
 .gdrive-input-section {
     display: flex;
     flex-direction: column;

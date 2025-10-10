@@ -14,17 +14,29 @@
 3. Change to **"Anyone with the link can view"**
 4. Click **Copy link**
 
-### 3️⃣ Load on Website
-1. Open `article.html` in your browser
-2. Paste the Google Drive link in the input box
-3. Click **"Load Document"**
-4. Click **"View Document"** to see it displayed
+### 3️⃣ Configure the Link in Code
+1. Open `vozvibeweb/article.js` in your code editor
+2. Find line 5: `const ARTICLE_GDRIVE_LINK = 'https://drive.google.com/file/d/YOUR_FILE_ID_HERE/view';`
+3. Replace `YOUR_FILE_ID_HERE` with your Google Drive link or File ID
+4. Save the file
+5. Commit and push to GitHub (or just save locally)
+
+**Example:**
+```javascript
+// Before:
+const ARTICLE_GDRIVE_LINK = 'https://drive.google.com/file/d/YOUR_FILE_ID_HERE/view';
+
+// After:
+const ARTICLE_GDRIVE_LINK = 'https://drive.google.com/file/d/1ABcDeFgHiJkLmNoPqRsTuVwXyZ/view';
+// Or just the File ID:
+const ARTICLE_GDRIVE_LINK = '1ABcDeFgHiJkLmNoPqRsTuVwXyZ';
+```
 
 ### 4️⃣ Share with Team
 - Share the article page URL with your team members
-- They will automatically see the same Google Drive document
-- Example: `file:///C:/path/to/vozvibeweb/article.html`
-- Or host it on a web server for easier access
+- They will automatically see the document (no setup needed)
+- Example: `https://voicevibe.com/article.html`
+- Or: `file:///C:/path/to/vozvibeweb/article.html`
 
 ---
 
@@ -32,7 +44,7 @@
 
 ### How to View the Article
 1. Open the article page URL (shared by Adam)
-2. The document link is already loaded
+2. Document is automatically loaded
 3. Click **"View Document"**
 4. Read the article
 
@@ -46,18 +58,20 @@
 
 ## Updating the Article
 
-### If you need to update the article:
-**Option 1: Replace in Google Drive**
-- Go to Google Drive
-- Delete the old file or upload a new version
-- Keep the same sharing link
-- Team members just click "View Document" again to see updates
+### Option 1: Replace in Google Drive (Same Link)
+1. Go to Google Drive
+2. Delete the old file
+3. Upload new version with **same filename**
+4. Share with same settings
+5. Team members refresh page and click "View Document" to see updates
+6. **No code changes needed!**
 
-**Option 2: Upload New Version**
-- Upload the new version to Google Drive
-- Get the new sharing link
-- Paste the new link on the article page
-- Click "Load Document"
+### Option 2: New File (Different Link)
+1. Upload new version to Google Drive
+2. Get the new sharing link
+3. Open `article.js` and update `ARTICLE_GDRIVE_LINK`
+4. Save and commit
+5. Team members will see the new document
 
 ---
 

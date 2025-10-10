@@ -67,21 +67,31 @@ Added a new article progress page to the VozVibe website for tracking and sharin
 4. Set sharing to **"Anyone with the link can view"**
 5. Copy the link
 
-#### Step 2: Load on Website
-1. Open `article.html` in a web browser
-2. Paste the Google Drive link in the input field
-3. Click **"Load Document"**
-4. Click **"View Document"** to display the article
-5. Share the article page URL with team members
+#### Step 2: Configure in Code (Like APK Link)
+1. Open `vozvibeweb/article.js` in your code editor
+2. Find line 5: `const ARTICLE_GDRIVE_LINK = 'https://drive.google.com/file/d/YOUR_FILE_ID_HERE/view';`
+3. Replace `YOUR_FILE_ID_HERE` with your Google Drive link or File ID
+4. Save the file
 
-#### Step 3: Update Article
-- To update the article, just replace the file in Google Drive
-- Team members refresh the page and click "View Document" to see updates
-- Or change the Google Drive link to load a different version
+**Example:**
+```javascript
+const ARTICLE_GDRIVE_LINK = 'https://drive.google.com/file/d/1ABcDeFgHiJkLmNoPqRsTuVwXyZ/view';
+// Or just the File ID:
+const ARTICLE_GDRIVE_LINK = '1ABcDeFgHiJkLmNoPqRsTuVwXyZ';
+```
+
+#### Step 3: Share with Team
+- Share the article page URL with your team members
+- They will automatically see the document (no configuration needed)
+- Just like how the APK download link works!
+
+#### Step 4: Update Article
+- **Easy way:** Replace the file in Google Drive (keep same link) - no code changes needed
+- **New file:** Update `ARTICLE_GDRIVE_LINK` in `article.js` with new link
 
 ### For Team Members:
 1. Navigate to the article page (URL shared by Adam)
-2. The Google Drive link will be automatically loaded
+2. Document is automatically loaded from the configured Google Drive link
 3. Click **"View Document"** to read the current article
 4. Scroll to the **"Team Feedback & Comments"** section
 5. Type your feedback and click **"Submit Feedback"**
@@ -93,11 +103,15 @@ Added a new article progress page to the VozVibe website for tracking and sharin
   - Converts `.docx` files to HTML
   - URL: `https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js`
 
+### Configuration:
+- **Google Drive link is hardcoded in `article.js`** (line 5)
+- Similar to how APK download link is configured in `script.js`
+- One-time setup by team leader, works for everyone
+
 ### Browser Storage:
 - **localStorage** is used to persist:
-  - Google Drive file ID and URL
-  - Team feedback/comments
-  - Allows page refresh without re-entering the link
+  - Team feedback/comments only
+  - Document link comes from code, not storage
 
 ### Google Drive Integration:
 - Uses Google Drive direct download API: `https://drive.google.com/uc?export=download&id={FILE_ID}`
@@ -147,25 +161,24 @@ Added a new article progress page to the VozVibe website for tracking and sharin
 - Smooth animations and transitions
 
 ## Notes
+- **Google Drive link is hardcoded in `article.js`** - just like the APK download link in `script.js`
+- Team members don't need to configure anything - document loads automatically
 - **Document is stored on Google Drive** - persistent and accessible to all team members
-- Only the Google Drive link is stored in browser localStorage
-- Clearing browser data will only remove the saved link (easily re-entered)
 - **Feedback is stored locally** per browser (consider backend for shared feedback in future)
 - Perfect for team collaboration - everyone sees the same document
-- To update the article, simply replace the file in Google Drive
+- To update the article, simply replace the file in Google Drive (no code changes if link stays same)
 
 ## Testing Checklist
-- [x] Paste Google Drive link
-- [x] Load document from Google Drive
+- [x] Configure Google Drive link in `article.js`
+- [x] Automatic document loading on page load
 - [x] View document preview
 - [x] Print document
 - [x] Open in Google Drive
-- [x] Change Google Drive link
 - [x] Submit feedback
 - [x] Page refresh persistence
 - [x] Responsive design
 - [x] Navigation between pages
-- [x] Team accessibility (multiple users)
+- [x] Team accessibility (multiple users - no setup needed)
 
 ---
 

@@ -38,44 +38,22 @@
                     <div class="upload-card">
                         <div class="gdrive-setup" id="gdriveSetup">
                             <i class="fab fa-google-drive upload-icon" style="color: #4285F4;"></i>
-                            <h3>Load Document from Google Drive</h3>
-                            <p>Upload your .docx file to Google Drive, then paste the file link or ID below</p>
-                            
-                            <div class="gdrive-instructions">
-                                <h4><i class="fas fa-info-circle"></i> How to get Google Drive link:</h4>
-                                <ol>
-                                    <li>Upload your .docx file to Google Drive</li>
-                                    <li>Right-click the file → Get link</li>
-                                    <li>Set to "Anyone with the link can view"</li>
-                                    <li>Copy and paste the link below</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="gdrive-input-section">
-                                <input type="text" id="gdriveInput" placeholder="Paste Google Drive link or File ID here..." class="gdrive-input">
-                                <button class="upload-btn" onclick="loadFromGoogleDrive()">
-                                    <i class="fas fa-cloud-download-alt"></i> Load Document
-                                </button>
-                            </div>
-                            
-                            <p class="example-text">Example: https://drive.google.com/file/d/1ABC...xyz/view</p>
+                            <h3>Loading Document...</h3>
+                            <p>Please wait while we load the article from Google Drive</p>
                         </div>
                         
                         <div class="file-info" id="fileInfo" style="display: none;">
                             <div class="file-details">
                                 <i class="fab fa-google-drive file-icon" style="color: #4285F4;"></i>
                                 <div class="file-meta">
-                                    <h4 id="fileName">Google Drive Document</h4>
-                                    <p id="fileSize">From Google Drive</p>
-                                    <p id="uploadTime">Loaded: Just now</p>
+                                    <h4 id="fileName">JALT-CALL Article</h4>
+                                    <p id="fileSize">Hosted on Google Drive</p>
+                                    <p id="uploadTime">Ready to view</p>
                                 </div>
                             </div>
                             <div class="file-actions">
                                 <button class="action-btn view-btn" onclick="displayDocument()">
                                     <i class="fas fa-eye"></i> View Document
-                                </button>
-                                <button class="action-btn change-btn" onclick="changeFile()">
-                                    <i class="fas fa-sync-alt"></i> Change File
                                 </button>
                                 <button class="action-btn download-btn" onclick="openInGoogleDrive()">
                                     <i class="fab fa-google-drive"></i> Open in Drive

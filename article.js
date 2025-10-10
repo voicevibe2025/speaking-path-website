@@ -1,5 +1,10 @@
 // VozVibe Article Page JavaScript
 
+// CONFIGURE YOUR GOOGLE DRIVE DOCUMENT LINK HERE
+// Upload your .docx to Google Drive, share it as "Anyone with the link", then paste the link below
+const ARTICLE_GDRIVE_LINK = '1EhKcZF38nU405NWZlkdn4MAccli-hX7m';
+// File ID extracted from: https://docs.google.com/document/d/1EhKcZF38nU405NWZlkdn4MAccli-hX7m/edit
+
 let currentFile = null;
 let currentFileBlob = null;
 let currentGDriveFileId = null;
@@ -9,7 +14,7 @@ let currentGDriveUrl = null;
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Article page loaded');
     loadSavedFeedback();
-    loadSavedGDriveLink();
+    initializeArticleFromConfig();
 });
 
 // Extract Google Drive File ID from URL or ID
@@ -39,63 +44,6 @@ function extractGDriveFileId(input) {
     return null;
 }
 
-// Load document from Google Drive
-async function loadFromGoogleDrive() {
-    const gdriveInput = document.getElementById('gdriveInput');
-    const input = gdriveInput.value.trim();
-    
-    if (!input) {
-        showNotification('Please enter a Google Drive link or File ID', 'error');
-        return;
-    }
-    
-    const fileId = extractGDriveFileId(input);
-    
-    if (!fileId) {
-        showNotification('Invalid Google Drive link or File ID', 'error');
-        return;
-    }
-    
-    // Show loading
-    showNotification('Loading document from Google Drive...', 'info');
-    
-    try {
-        // Use Google Drive direct download URL (requires public sharing)
-        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
-        
-        const response = await fetch(downloadUrl);
-        
-        if (!response.ok) {
-            throw new Error('Failed to download file. Make sure the file is shared as "Anyone with the link can view"');
-        }
-        
-        const blob = await response.blob();
-        
-        // Check if it's a .docx file
-        if (!blob.type.includes('wordprocessingml') && !blob.type.includes('application/octet-stream')) {
-            throw new Error('File does not appear to be a Word document (.docx)');
-        }
-        
-        // Store the file
-        currentFileBlob = blob;
-        currentGDriveFileId = fileId;
-        currentGDriveUrl = `https://drive.google.com/file/d/${fileId}/view`;
-        
-        // Save to localStorage
-        localStorage.setItem('gdriveFileId', fileId);
-        localStorage.setItem('gdriveUrl', currentGDriveUrl);
-        localStorage.setItem('gdriveLoadTime', new Date().toISOString());
-        
-        // Display file info
-        displayGDriveFileInfo();
-        
-        showNotification('Document loaded successfully from Google Drive!', 'success');
-        
-    } catch (error) {
-        console.error('Error loading from Google Drive:', error);
-        showNotification(error.message || 'Failed to load document from Google Drive', 'error');
-    }
-}
 
 // Display Google Drive file information
 function displayGDriveFileInfo() {
@@ -111,33 +59,43 @@ function displayGDriveFileInfo() {
     uploadTime.textContent = `Loaded: ${new Date().toLocaleString()}`;
 }
 
-// Load saved Google Drive link
-function loadSavedGDriveLink() {
-    const savedFileId = localStorage.getItem('gdriveFileId');
-    const savedUrl = localStorage.getItem('gdriveUrl');
-    const savedTime = localStorage.getItem('gdriveLoadTime');
-    
-    if (savedFileId && savedUrl) {
-        currentGDriveFileId = savedFileId;
-        currentGDriveUrl = savedUrl;
-        
-        // Update input field
-        document.getElementById('gdriveInput').value = savedUrl;
-        
-        // Show file info
+// Initialize article from config
+function initializeArticleFromConfig() {
+    // Check if link is configured
+    if (!ARTICLE_GDRIVE_LINK || ARTICLE_GDRIVE_LINK.includes('YOUR_FILE_ID_HERE')) {
+        // Not configured yet - show instructions
         const gdriveSetup = document.getElementById('gdriveSetup');
-        const fileInfo = document.getElementById('fileInfo');
-        const fileName = document.getElementById('fileName');
-        const uploadTime = document.getElementById('uploadTime');
-        
-        gdriveSetup.style.display = 'none';
-        fileInfo.style.display = 'block';
-        
-        fileName.textContent = 'JALT-CALL Article (Google Drive)';
-        uploadTime.textContent = `Loaded: ${new Date(savedTime).toLocaleString()}`;
-        
-        console.log('Restored Google Drive link from previous session');
+        gdriveSetup.innerHTML = `
+            <i class="fas fa-exclamation-circle upload-icon" style="color: #f59e0b;"></i>
+            <h3>Document Link Not Configured</h3>
+            <p>The team leader needs to configure the Google Drive link in <code>article.js</code></p>
+            <div class="gdrive-instructions">
+                <h4><i class="fas fa-info-circle"></i> Instructions for Team Leader:</h4>
+                <ol>
+                    <li>Upload the JALT-CALL article (.docx) to Google Drive</li>
+                    <li>Right-click the file → Get link → "Anyone with the link can view"</li>
+                    <li>Copy the link</li>
+                    <li>Open <code>vozvibeweb/article.js</code></li>
+                    <li>Replace <code>YOUR_FILE_ID_HERE</code> with your link or File ID</li>
+                    <li>Save and refresh this page</li>
+                </ol>
+            </div>
+        `;
+        return;
     }
+    
+    // Extract file ID from config
+    currentGDriveFileId = extractGDriveFileId(ARTICLE_GDRIVE_LINK);
+    currentGDriveUrl = `https://drive.google.com/file/d//${currentGDriveFileId}/view`;
+    
+    if (!currentGDriveFileId) {
+        showNotification('Invalid Google Drive link in configuration', 'error');
+        return;
+    }
+    
+    // Show file info (document is ready)
+    displayGDriveFileInfo();
+    console.log('Article loaded from configuration');
 }
 
 // Format file size
@@ -265,32 +223,6 @@ function printDocument() {
         printWindow.print();
         printWindow.close();
     }, 250);
-}
-
-// Change file
-function changeFile() {
-    const gdriveSetup = document.getElementById('gdriveSetup');
-    const fileInfo = document.getElementById('fileInfo');
-    const documentViewer = document.getElementById('documentViewer');
-    const feedbackSection = document.getElementById('feedbackSection');
-    
-    gdriveSetup.style.display = 'block';
-    fileInfo.style.display = 'none';
-    documentViewer.style.display = 'none';
-    feedbackSection.style.display = 'none';
-    
-    currentFile = null;
-    currentFileBlob = null;
-    currentGDriveFileId = null;
-    currentGDriveUrl = null;
-    
-    // Clear input
-    document.getElementById('gdriveInput').value = '';
-    
-    // Clear localStorage
-    localStorage.removeItem('gdriveFileId');
-    localStorage.removeItem('gdriveUrl');
-    localStorage.removeItem('gdriveLoadTime');
 }
 
 // Open in Google Drive
