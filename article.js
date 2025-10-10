@@ -1,9 +1,10 @@
 // VozVibe Article Page JavaScript
 
-// CONFIGURE YOUR GOOGLE DRIVE DOCUMENT LINK HERE
-// Upload your .docx to Google Drive, share it as "Anyone with the link", then paste the link below
+// CONFIGURE YOUR GOOGLE DRIVE/DOCS DOCUMENT LINK HERE
+// Supports both Google Docs (docs.google.com/document) and Google Drive files (.docx)
+// Share it as "Anyone with the link can view", then paste the link or File ID below
 const ARTICLE_GDRIVE_LINK = '1EhKcZF38nU405NWZlkdn4MAccli-hX7m';
-// File ID extracted from: https://docs.google.com/document/d/1EhKcZF38nU405NWZlkdn4MAccli-hX7m/edit
+// Google Docs link: https://docs.google.com/document/d/1EhKcZF38nU405NWZlkdn4MAccli-hX7m/edit
 
 let currentFile = null;
 let currentFileBlob = null;
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeArticleFromConfig();
 });
 
-// Extract Google Drive File ID from URL or ID
+// Extract Google Drive/Docs File ID from URL or ID
 function extractGDriveFileId(input) {
     input = input.trim();
     
@@ -26,12 +27,13 @@ function extractGDriveFileId(input) {
         return input;
     }
     
-    // Extract from various Google Drive URL formats
+    // Extract from various Google Drive and Google Docs URL formats
     const patterns = [
-        /\/file\/d\/([a-zA-Z0-9_-]+)/,  // /file/d/FILE_ID
-        /id=([a-zA-Z0-9_-]+)/,           // id=FILE_ID
-        /\/open\?id=([a-zA-Z0-9_-]+)/,  // /open?id=FILE_ID
-        /\/d\/([a-zA-Z0-9_-]+)/          // /d/FILE_ID
+        /\/document\/d\/([a-zA-Z0-9_-]+)/,  // Google Docs: /document/d/FILE_ID
+        /\/file\/d\/([a-zA-Z0-9_-]+)/,      // /file/d/FILE_ID
+        /id=([a-zA-Z0-9_-]+)/,               // id=FILE_ID
+        /\/open\?id=([a-zA-Z0-9_-]+)/,      // /open?id=FILE_ID
+        /\/d\/([a-zA-Z0-9_-]+)/              // /d/FILE_ID
     ];
     
     for (const pattern of patterns) {
@@ -86,7 +88,13 @@ function initializeArticleFromConfig() {
     
     // Extract file ID from config
     currentGDriveFileId = extractGDriveFileId(ARTICLE_GDRIVE_LINK);
-    currentGDriveUrl = `https://drive.google.com/file/d//${currentGDriveFileId}/view`;
+    
+    // Set the appropriate URL (Google Docs or Google Drive)
+    if (ARTICLE_GDRIVE_LINK.includes('docs.google.com')) {
+        currentGDriveUrl = `https://docs.google.com/document/d/${currentGDriveFileId}/edit`;
+    } else {
+        currentGDriveUrl = `https://drive.google.com/file/d/${currentGDriveFileId}/view`;
+    }
     
     if (!currentGDriveFileId) {
         showNotification('Invalid Google Drive link in configuration', 'error');
@@ -129,13 +137,33 @@ async function displayDocument() {
     documentViewer.scrollIntoView({ behavior: 'smooth' });
     
     try {
-        // If we don't have the blob, fetch it from Google Drive
+        // If we don't have the blob, fetch it from Google Drive/Docs
         if (!currentFileBlob && currentGDriveFileId) {
-            const downloadUrl = `https://drive.google.com/uc?export=download&id=${currentGDriveFileId}`;
-            const response = await fetch(downloadUrl);
+            let downloadUrl;
+            let response;
             
-            if (!response.ok) {
-                throw new Error('Failed to download file from Google Drive');
+            // Try Google Docs export first (for docs.google.com links)
+            try {
+                downloadUrl = `https://docs.google.com/document/d/${currentGDriveFileId}/export?format=docx`;
+                response = await fetch(downloadUrl, { mode: 'cors' });
+                
+                if (!response.ok) {
+                    throw new Error('Google Docs export failed');
+                }
+            } catch (docsError) {
+                // If Google Docs export fails, try regular Google Drive download
+                console.log('Google Docs export failed, trying Drive download:', docsError);
+                try {
+                    downloadUrl = `https://drive.google.com/uc?export=download&id=${currentGDriveFileId}`;
+                    response = await fetch(downloadUrl, { mode: 'cors' });
+                    
+                    if (!response.ok) {
+                        throw new Error('Google Drive download failed');
+                    }
+                } catch (driveError) {
+                    console.error('Both methods failed:', driveError);
+                    throw new Error('Failed to download file. Make sure the file is shared as "Anyone with the link can view". If this is a Google Docs file, try downloading it as .docx and uploading to Google Drive instead.');
+                }
             }
             
             currentFileBlob = await response.blob();
