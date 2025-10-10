@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VozVibe - JALT-CALL Article Progress</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="article-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <img src="vozvibe_logo2.png" alt="VozVibe Logo" class="app-logo">
+                </div>
+                <h1 class="app-title">VozVibe</h1>
+            </div>
+            <p class="tagline">JALT-CALL Article Progress</p>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="article-section">
+                <div class="article-header">
+                    <h2>Article Progress Tracker</h2>
+                    <p class="article-subtitle">Upload and share your JALT-CALL article with the team for feedback and collaboration</p>
+                </div>
+
+                <div class="upload-section">
+                    <div class="upload-card">
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <h3>Upload Word Document</h3>
+                            <p>Drag and drop your .docx file here, or click to browse</p>
+                            <input type="file" id="fileInput" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display: none;">
+                            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                                <i class="fas fa-folder-open"></i> Choose File
+                            </button>
+                        </div>
+                        
+                        <div class="file-info" id="fileInfo" style="display: none;">
+                            <div class="file-details">
+                                <i class="fas fa-file-word file-icon"></i>
+                                <div class="file-meta">
+                                    <h4 id="fileName">No file selected</h4>
+                                    <p id="fileSize">0 KB</p>
+                                    <p id="uploadTime">Uploaded: Just now</p>
+                                </div>
+                            </div>
+                            <div class="file-actions">
+                                <button class="action-btn view-btn" onclick="displayDocument()">
+                                    <i class="fas fa-eye"></i> View Document
+                                </button>
+                                <button class="action-btn change-btn" onclick="changeFile()">
+                                    <i class="fas fa-sync-alt"></i> Change File
+                                </button>
+                                <button class="action-btn download-btn" onclick="downloadCurrentFile()">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-info-card">
+                        <h3><i class="fas fa-info-circle"></i> Article Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Conference:</label>
+                                <span>JALT-CALL</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Lead Author:</label>
+                                <span>Adam, S.Pd., M.Pd.</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Project:</label>
+                                <span>VozVibe App 2025</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Status:</label>
+                                <span class="status-badge">In Progress</span>
+                            </div>
+                        </div>
+                        <div class="team-note">
+                            <i class="fas fa-users"></i>
+                            <p>Team members can view and provide feedback on the uploaded document</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="document-viewer" id="documentViewer" style="display: none;">
+                    <div class="viewer-header">
+                        <h3><i class="fas fa-file-alt"></i> Document Preview</h3>
+                        <div class="viewer-controls">
+                            <button class="control-btn" onclick="printDocument()">
+                                <i class="fas fa-print"></i> Print
+                            </button>
+                            <button class="control-btn" onclick="hideDocument()">
+                                <i class="fas fa-times"></i> Close Preview
+                            </button>
+                        </div>
+                    </div>
+                    <div class="document-content" id="documentContent">
+                        <!-- Document content will be rendered here -->
+                    </div>
+                </div>
+
+                <div class="feedback-section" id="feedbackSection" style="display: none;">
+                    <div class="feedback-card">
+                        <h3><i class="fas fa-comments"></i> Team Feedback & Comments</h3>
+                        <div class="feedback-input-area">
+                            <textarea id="feedbackInput" placeholder="Add your feedback or comments here..."></textarea>
+                            <button class="submit-feedback-btn" onclick="submitFeedback()">
+                                <i class="fas fa-paper-plane"></i> Submit Feedback
+                            </button>
+                        </div>
+                        <div class="feedback-list" id="feedbackList">
+                            <!-- Feedback items will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 VozVibe. All rights reserved.</p>
+                <p class="app-owner">App Owner: Adam, S.Pd., M.Pd. – Team leader of VozVibe App project 2025.</p>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="article.html">Article</a>
+                    <a href="#support">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="article.js"></script>
+</body>
+</html>

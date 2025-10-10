@@ -75,6 +75,33 @@ body {
     margin-top: 10px;
 }
 
+.nav-buttons {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+}
+
+.nav-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+    background: linear-gradient(135deg, #5b52ee 0%, #f260a7 100%);
+}
+
 /* Main Content */
 .main-content {
     flex: 1;
