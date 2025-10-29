@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VozVibe - Pendahuluan Penelitian</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0d9488;
+            --accent: #d97706;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('bg4.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            transform-origin: center;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        @keyframes slideUp {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes zoomIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .title-font {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 24px;
+        }
+        
+        .nav-btn {
+            background: transparent;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.03);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .expand-on-hover {
+            transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .expand-on-hover:hover {
+            transform: scale(1.05);
+            z-index: 20;
+        }
+
+        .expand-on-hover.expanded {
+            transform: scale(1.60) !important;
+            z-index: 30;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .expand-on-hover.expanded:hover {
+            transform: scale(1.60) !important;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .slide-up {
+            animation-name: slideUp;
+        }
+
+        .fade-in {
+            animation-name: fadeIn;
+        }
+
+        .zoom-in {
+            animation-name: zoomIn;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Progress bar -->
+    <div id="progress-bar" class="progress-bar"></div>
+
+    <!-- Presentation Container -->
+    <div id="presentation-container" class="w-full max-w-5xl aspect-[16/9] relative mb-32">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="w-full h-full slide-content flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
+                <div class="relative z-10">
+                    <div class="w-28 h-28 mx-auto mb-6 flex items-center justify-center rounded-2xl animated zoom-in">
+                        <img src="voicevibe-logo.jpeg" alt="VozVibe Logo" class="h-20">
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-4 title-font gradient-text animated slide-up delay-1">VozVibe</h1>
+                    <p class="text-xl md:text-2xl mt-2 text-slate-200 max-w-3xl mx-auto animated slide-up delay-2">Integrasi Kecerdasan Buatan Multimodal dan Gamifikasi Adaptif Berbasis Konteks Sosio-Kultural Indonesia</p>
+                    <div class="w-32 h-1.5 bg-gradient-to-r from-blue-400 to-teal-400 my-8 rounded-full mx-auto animated fade-in delay-3"></div>
+                    <p class="text-2xl text-slate-200 animated fade-in delay-4">Hibah Kemdiktisaintek 2025</p>
+                    <p class="text-lg text-slate-400 mt-2 animated fade-in delay-4">Penelitian Pengembangan Aplikasi Mobile untuk Pembelajaran Speaking</p>
+                    <p class="mt-10 text-xl font-semibold text-slate-200 animated fade-in delay-5">Adam, S.Pd., M.Pd & Tim Peneliti</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Latar Belakang Masalah -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-8">
+                        <div class="w-10 h-10 rounded-lg bg-red-500 flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Latar Belakang Masalah</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border border-red-100/50 expand-on-hover">
+                            <h3 class="font-bold text-xl mb-4 text-red-400 flex items-center">
+                                <i class="fas fa-times-circle mr-2"></i> Keterbatasan Metode Konvensional
+                            </h3>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center mt-1 flex-shrink-0">
+                                        <i class="fas fa-check text-red-500 text-xs"></i>
+                                    </div>
+                                    <span class="ml-3">Metode pembelajaran bahasa konvensional tidak efektif di era digital</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center mt-1 flex-shrink-0">
+                                        <i class="fas fa-check text-red-500 text-xs"></i>
+                                    </div>
+                                    <span class="ml-3">Kurangnya umpan balik personal dan instan untuk pembelajar</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center mt-1 flex-shrink-0">
+                                        <i class="fas fa-check text-red-500 text-xs"></i>
+                                    </div>
+                                    <span class="ml-3">Terbatasnya paparan dan praktik komunikasi kontekstual</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border border-amber-100/50 expand-on-hover">
+                            <h3 class="font-bold text-xl mb-4 text-amber-400 flex items-center">
+                                <i class="fas fa-mobile-alt mr-2"></i> Kelemahan Aplikasi Pembelajaran Bahasa
+                            </h3>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center mt-1 flex-shrink-0">
+                                        <i class="fas fa-check text-amber-500 text-xs"></i>
+                                    </div>
+                                    <span class="ml-3"><strong>Minimnya personalisasi</strong> berbasis konteks sosio-kultural</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center mt-1 flex-shrink-0">
+                                        <i class="fas fa-check text-amber-500 text-xs"></i>
+                                    </div>
+                                    <span class="ml-3"><strong>Rendahnya retensi</strong> keterampilan jangka panjang</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center mt-1 flex-shrink-0">
+                                        <i class="fas fa-check text-amber-500 text-xs"></i>
+                                    </div>
+                                    <span class="ml-3"><strong>Ketidakmampuan beradaptasi</strong> dengan variasi individu pembelajar</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-5 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl">
+                        <p class="text-xl font-bold text-white">Solusi: <span class="font-normal text-blue-50">Aplikasi pembelajaran yang personal, cerdas secara budaya, dan efektif secara pedagogi.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Tujuan Penelitian -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                            <i class="fas fa-bullseye text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Tujuan Penelitian</h2>
+                    </div>
+                    
+                    <div class="bg-slate-800/85 p-8 rounded-2xl border border-blue-100/50 mb-8">
+                        <p class="text-2xl text-slate-200 leading-relaxed">
+                            Mengembangkan aplikasi <span class="text-blue-400 font-bold">VozVibe</span> yang mengintegrasikan 
+                            <span class="text-teal-400 font-bold">kecerdasan buatan multimodal</span> berbasis konteks sosio-kultural 
+                            untuk mengatasi keterbatasan pembelajaran bahasa konvensional di era digital.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 p-6 rounded-2xl border border-blue-300/50 expand-on-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-white text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-xl text-blue-300 ml-4">Target Peningkatan</h3>
+                            </div>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-center">
+                                    <i class="fas fa-arrow-up text-green-400 mr-3"></i>
+                                    <span><strong>Minimal 30%</strong> kemampuan speaking</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-brain text-purple-400 mr-3"></i>
+                                    <span><strong>Minimal 25%</strong> retensi jangka panjang</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-teal-500/20 to-emerald-500/20 p-6 rounded-2xl border border-teal-300/50 expand-on-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-teal-500 flex items-center justify-center">
+                                    <i class="fas fa-trophy text-white text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-xl text-teal-300 ml-4">Inovasi Utama</h3>
+                            </div>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-center">
+                                    <i class="fas fa-robot text-blue-400 mr-3"></i>
+                                    <span>AI Multimodal Hybrid</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-globe-asia text-amber-400 mr-3"></i>
+                                    <span>Personalisasi Sosio-Kultural</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-gamepad text-green-400 mr-3"></i>
+                                    <span>Gamifikasi Berbasis Budaya</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Tiga Komponen Inovatif -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                            <i class="fas fa-cube text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Tiga Komponen Inovatif VozVibe</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Component 1 -->
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border-l-4 border-blue-500 expand-on-hover">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-brain text-white text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-xl text-blue-400 mb-2">1. Hybrid AI-Driven Adaptive Learning</h3>
+                                    <p class="text-slate-300 mb-3">Arsitektur AI terintegrasi untuk evaluasi fonetik, personalisasi sekuensial, dan analisis pragmatik-kontekstual.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">CNN - Evaluasi Fonetik</span>
+                                        <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">NLP - Analisis Leksikal</span>
+                                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm">GRU - Personalisasi Sekuensial</span>
+                                        <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">LLM API - Evaluasi Pragmatik</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Component 2 -->
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border-l-4 border-amber-500 expand-on-hover">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-amber-500 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-users text-white text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-xl text-amber-400 mb-2">2. Culturally-Responsive Gamification Framework</h3>
+                                    <p class="text-slate-300 mb-3">Framework gamifikasi adaptif berbasis teori Hofstede yang dirancang khusus sesuai karakteristik sosio-kultural Indonesia.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-sm">Teori Hofstede</span>
+                                        <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Konteks Hierarkis-Kolektivis</span>
+                                        <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm">Motivasi Berkelanjutan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Component 3 -->
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border-l-4 border-emerald-500 expand-on-hover">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-globe-asia text-white text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-xl text-emerald-400 mb-2">3. Dynamic Socio-Cultural Personalization</h3>
+                                    <p class="text-slate-300 mb-3">Model kecerdasan buatan menggunakan algoritma GRU untuk menyajikan skenario komunikatif kontekstual yang relevan bagi pengguna Indonesia.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">GRU Algorithm</span>
+                                        <span class="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm">Skenario Komunikatif</span>
+                                        <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Konteks Indonesia</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Metodologi Penelitian -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                            <i class="fas fa-flask text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Metodologi Penelitian</h2>
+                    </div>
+                    
+                    <div class="bg-slate-800/85 p-6 rounded-2xl border border-green-100/50 mb-6">
+                        <p class="text-xl text-slate-200">
+                            <span class="font-bold text-green-400">R&D</span> dengan pendekatan 
+                            <span class="font-bold text-teal-400">mixed-method sequential explanatory</span>
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Fase 1 -->
+                        <div class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 p-6 rounded-2xl border border-blue-300/50 expand-on-hover">
+                            <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mb-4">
+                                <span class="text-white font-bold text-xl">1</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-blue-400 mb-3">Fase Analisis</h3>
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-400 mr-2 mt-1"></i>
+                                    <span>Studi eksplorasi kualitatif</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-400 mr-2 mt-1"></i>
+                                    <span>Survei kuantitatif</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-400 mr-2 mt-1"></i>
+                                    <span>Analisis kebutuhan pembelajaran</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Fase 2 -->
+                        <div class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6 rounded-2xl border border-purple-300/50 expand-on-hover">
+                            <div class="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center mb-4">
+                                <span class="text-white font-bold text-xl">2</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-purple-400 mb-3">Fase Pengembangan</h3>
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-purple-400 mr-2 mt-1"></i>
+                                    <span>Metodologi Agile-Scrum</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-purple-400 mr-2 mt-1"></i>
+                                    <span>Validasi iteratif</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-purple-400 mr-2 mt-1"></i>
+                                    <span>Pengembangan prototipe</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Fase 3 -->
+                        <div class="bg-gradient-to-br from-emerald-500/20 to-teal-500/20 p-6 rounded-2xl border border-emerald-300/50 expand-on-hover">
+                            <div class="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center mb-4">
+                                <span class="text-white font-bold text-xl">3</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-emerald-400 mb-3">Fase Evaluasi</h3>
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-emerald-400 mr-2 mt-1"></i>
+                                    <span>Eksperimen terkontrol</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-emerald-400 mr-2 mt-1"></i>
+                                    <span>100 partisipan, 46 hari</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-emerald-400 mr-2 mt-1"></i>
+                                    <span>Analisis efektivitas</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-5 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl">
+                        <p class="text-lg font-semibold text-white text-center">
+                            Eksperimen dengan arsitektur AI multimodal, ekosistem gamifikasi adaptif, dan jalur pembelajaran kontekstual-pragmatik
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Luaran yang Ditargetkan -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center">
+                            <i class="fas fa-star text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Luaran yang Ditargetkan</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Luaran 1 -->
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border-t-4 border-blue-500 expand-on-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center">
+                                    <i class="fas fa-mobile-alt text-white text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-xl text-blue-400 ml-3">Prototipe Aplikasi</h3>
+                            </div>
+                            <p class="text-slate-300">Prototipe aplikasi VozVibe yang fully functional dengan integrasi AI multimodal dan gamifikasi adaptif</p>
+                        </div>
+
+                        <!-- Luaran 2 -->
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border-t-4 border-purple-500 expand-on-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-purple-500 flex items-center justify-center">
+                                    <i class="fas fa-book text-white text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-xl text-purple-400 ml-3">Publikasi Internasional</h3>
+                            </div>
+                            <p class="text-slate-300">Publikasi di jurnal internasional Q1 <strong>JALT-CALL</strong> (Japan Association for Language Teaching CALL)</p>
+                        </div>
+
+                        <!-- Luaran 3 -->
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border-t-4 border-emerald-500 expand-on-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-emerald-500 flex items-center justify-center">
+                                    <i class="fas fa-cogs text-white text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-xl text-emerald-400 ml-3">Model Teknologi</h3>
+                            </div>
+                            <p class="text-slate-300">Model teknologi pembelajaran speaking adaptif berbasis AI untuk konteks pendidikan Bahasa Inggris di Indonesia</p>
+                        </div>
+
+                        <!-- Luaran 4 -->
+                        <div class="bg-slate-800/85 p-6 rounded-2xl border-t-4 border-amber-500 expand-on-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-amber-500 flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-white text-xl"></i>
+                                </div>
+                                <h3 class="font-bold text-xl text-amber-400 ml-3">Peningkatan Keterampilan</h3>
+                            </div>
+                            <div class="space-y-2 text-slate-300">
+                                <p class="flex items-center">
+                                    <i class="fas fa-arrow-up text-green-400 mr-2"></i>
+                                    <strong class="text-green-400">≥30%</strong> peningkatan kemampuan speaking
+                                </p>
+                                <p class="flex items-center">
+                                    <i class="fas fa-brain text-purple-400 mr-2"></i>
+                                    <strong class="text-purple-400">≥25%</strong> retensi jangka panjang
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 rounded-2xl shadow-lg">
+                        <p class="text-xl font-bold text-white text-center mb-2">Kontribusi Fundamental</p>
+                        <p class="text-lg text-white text-center opacity-90">Transformasi pembelajaran speaking melalui integrasi teknologi kontekstual yang responsif secara budaya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: HomeScreen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                            <i class="fas fa-home text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Home Screen</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="home_screen.jpg" alt="Home Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-cyan-100/50">
+                                <h3 class="font-bold text-2xl text-cyan-400 mb-6">Desain untuk Peningkatan Speaking</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-trophy text-cyan-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Proficiency tier</strong> (Chaucerite → The Bard Eternal) memotivasi pembelajar untuk menyelesaikan lebih banyak topik dan mencapai mastery berbasis pencapaian nyata</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-chart-line text-cyan-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Grafik skor harian</strong> dengan interpretasi visual (Excellent, Great, Good) meningkatkan self-awareness tentang konsistensi latihan dan mendorong peningkatan berkelanjutan</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-bolt text-cyan-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Quick access</strong> ke speaking practice mengurangi friction kognitif, memudahkan habit formation, dan meningkatkan frekuensi latihan speaking</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: AI Coach Section -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">AI Coach Section</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="ai_coach_section.jpg" alt="AI Coach Section" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-pink-100/50">
+                                <h3 class="font-bold text-2xl text-pink-400 mb-6">Adaptive AI untuk Learning Efficiency</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-brain text-pink-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Algoritma GRU</strong> mengidentifikasi skill terlemah pembelajar (pronunciation, fluency, vocabulary, grammar, listening) untuk targeted improvement yang lebih efisien daripada latihan generik</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-globe-asia text-pink-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Gemini LLM</strong> menyediakan feedback yang relevan dengan konteks sosio-kultural Indonesia, meningkatkan transfer pembelajaran ke situasi komunikasi nyata</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-bullseye text-pink-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Next Best Action</strong> mengeliminasi decision fatigue dan memaksimalkan learning efficiency dengan mengarahkan ke latihan yang paling berdampak untuk progres</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Pronunciation Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                            <i class="fas fa-microphone text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Pronunciation Practice</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="pronunciation_screen.jpg" alt="Pronunciation Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-green-100/50">
+                                <h3 class="font-bold text-2xl text-green-400 mb-6">CNN untuk Evaluasi Fonetik Akurat</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-wave-square text-green-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Model CNN</strong> menganalisis spektogram audio untuk mendeteksi kesalahan fonetik spesifik (vokal, konsonan, intonasi) yang sulit diidentifikasi oleh human ear</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-chart-bar text-green-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Real-time scoring</strong> memberikan immediate feedback untuk mempercepat error correction dan muscle memory formation pada artikulasi</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-redo text-green-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Spaced repetition</strong> otomatis pada phrase dengan skor rendah memastikan pronunciation mastery sebelum lanjut ke topik berikutnya</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Fluency Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Fluency Practice</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="fluency_screen.jpg" alt="Fluency Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-orange-100/50">
+                                <h3 class="font-bold text-2xl text-orange-400 mb-6">Meningkatkan Speaking Speed & Natural Flow</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-tachometer-alt text-orange-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>WPM (Words Per Minute) tracking</strong> memotivasi pembelajar untuk gradually meningkatkan speaking speed tanpa mengorbankan akurasi</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-clock text-orange-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Pause detection</strong> mengidentifikasi hesitation dan filler words, mendorong smooth speech production yang natural</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-star text-orange-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Progressive difficulty</strong> dengan kalimat semakin panjang dan kompleks untuk build confidence dalam spontaneous speaking</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Vocabulary Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-violet-500 to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-book text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Vocabulary Practice</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="vocabulary_screen.jpg" alt="Vocabulary Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-violet-100/50">
+                                <h3 class="font-bold text-2xl text-violet-400 mb-6">Contextual Vocabulary Acquisition</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-comment-dots text-violet-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Vocabulary dalam konteks kalimat</strong> meningkatkan retention dan pemahaman usage dibanding isolated word memorization</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-language text-violet-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Multiple choice dengan distractor analysis</strong> melatih ability to distinguish synonyms, antonyms, dan contextually appropriate words</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-brain text-violet-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Topik-based clustering</strong> (e.g., daily routines, travel) memfasilitasi schema formation untuk long-term memory encoding</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Grammar Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-red-500 to-rose-500 flex items-center justify-center">
+                            <i class="fas fa-spell-check text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Grammar Practice</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="grammar_screen.jpg" alt="Grammar Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-red-100/50">
+                                <h3 class="font-bold text-2xl text-red-400 mb-6">Applied Grammar untuk Speaking Accuracy</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-puzzle-piece text-red-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Sentence construction practice</strong> melatih productive grammar skill (tidak hanya passive recognition) essential untuk speaking spontan</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-exclamation-circle text-red-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Common error correction</strong> fokus pada fossilized mistakes khas Indonesian learners (tenses, articles, prepositions) untuk targeted improvement</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-layer-group text-red-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Progressive complexity</strong> dari simple present ke complex structures membangun grammatical competence secara sistematis</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Leaderboard Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 flex items-center justify-center">
+                            <i class="fas fa-trophy text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Leaderboard Screen</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="leaderboard_screen.jpg" alt="Leaderboard Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-yellow-100/50">
+                                <h3 class="font-bold text-2xl text-yellow-400 mb-6">Culturally-Responsive Social Motivation</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-users text-yellow-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Leaderboard kolektivis</strong> memanfaatkan budaya Indonesia yang high collectivism untuk meningkatkan motivation through social comparison dan community engagement</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-fire text-yellow-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>XP-based ranking</strong> mendorong consistent daily practice dengan reward sistem yang transparan, meningkatkan learning persistence dan habit formation</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-medal text-yellow-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Tier-based achievement</strong> (Bronze, Silver, Gold) memberikan sense of progression dan attainable goals untuk sustained engagement</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: User Profile Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center">
+                            <i class="fas fa-user text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">User Profile Screen</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="user_profile_screen.jpg" alt="User Profile Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-indigo-100/50">
+                                <h3 class="font-bold text-2xl text-indigo-400 mb-6">Self-Awareness & Progress Visualization</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-chart-radar text-indigo-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Radar chart multi-skill</strong> (pronunciation, fluency, vocabulary, grammar, listening) memvisualisasikan learning profile untuk identify strength dan weaknesses dengan jelas</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-crown text-indigo-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Proficiency tier display</strong> (Chaucerite → The Bard Eternal) memperkuat identity sebagai language learner dan motivasi untuk level advancement</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-chart-line text-indigo-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Learning streak tracking</strong> memanfaatkan commitment consistency principle untuk maintain daily practice dan prevent skill decay</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Text Chat Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center">
+                            <i class="fas fa-comment-dots text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Text Chat with Vivi AI</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="text_chat.jpg" alt="Text Chat Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-teal-100/50">
+                                <h3 class="font-bold text-2xl text-teal-400 mb-6">Socio-Cultural Adaptive Conversation</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-map-marker-alt text-teal-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Batam cultural integration:</strong> Vivi menggunakan honorifik lokal (Bang, Kak, Dek), membahas makanan tradisional, tempat wisata, dan pantun Batam—menciptakan familiar context yang meningkatkan engagement</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-user-circle text-teal-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Personalized addressing:</strong> Berdasarkan usia dan gender pengguna (Bang/Kak/Dek + nama), sesuai Hofstede's high power distance di Indonesia—memperkuat rapport dan comfort level</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-language text-teal-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Code-switching capability:</strong> Vivi beradaptasi dengan bahasa user (Indonesian/English) dan memberikan gentle feedback—menurunkan affective filter dan anxiety dalam speaking practice</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Voice Chat Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
+                            <i class="fas fa-microphone-alt text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Voice Chat with Vivi AI</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="voice_chat.jpg" alt="Voice Chat Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-pink-100/50">
+                                <h3 class="font-bold text-2xl text-pink-400 mb-6">Multimodal AI untuk Spontaneous Speaking</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-waveform text-pink-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Real-time voice interaction:</strong> Gemini Live API memungkinkan natural turn-taking conversation tanpa delay—mensimulasikan authentic speaking situations untuk fluency development</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-theater-masks text-pink-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Pantun integration:</strong> Vivi menggunakan pantun (warisan budaya Batam) untuk memulai percakapan atau lighten mood—memanfaatkan schema familiarity untuk reduce cognitive load</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-comments text-pink-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Contextual feedback:</strong> Vivi memberikan corrections dan suggestions secara polite dan gentle dengan mempertimbangkan English level user—mendukung scaffolded learning tanpa threatening face</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: StoryTime Screen -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center p-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center">
+                            <i class="fas fa-book-open text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">StoryTime Screen</h2>
+                    </div>
+                    
+                    <div class="flex gap-8 items-center">
+                        <!-- Screenshot - Phone Frame -->
+                        <div class="flex-shrink-0">
+                            <div class="bg-slate-900 rounded-3xl p-3 shadow-2xl border-4 border-slate-800 expand-on-hover" style="width: 280px;">
+                                <div class="bg-slate-700 rounded-2xl overflow-hidden" style="aspect-ratio: 9/19;">
+                                    <img src="story_time_screen.jpg" alt="StoryTime Screen" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-8 rounded-2xl border border-amber-100/50">
+                                <h3 class="font-bold text-2xl text-amber-400 mb-6">Cultural Schema Integration untuk Meaningful Learning</h3>
+                                <div class="space-y-5 text-slate-300">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-dragon text-amber-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Indonesian folklore content:</strong> Cerita seperti Timun Mas, Bawang Merah Bawang Putih, dan Malin Kundang mengaktifkan existing cultural schema—memfasilitasi deeper comprehension dan retention</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-heart text-amber-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Affective engagement:</strong> Familiar stories mengurangi cognitive load dan anxiety, menciptakan emotionally safe environment untuk risk-taking dalam speaking practice</span>
+                                    </p>
+                                    <p class="flex items-start">
+                                        <i class="fas fa-language text-amber-400 mr-3 mt-1 flex-shrink-0 text-xl"></i>
+                                        <span><strong>Contextualized language input:</strong> Vocabulary dan grammar dipelajari dalam narrative context yang culturally meaningful—meningkatkan transfer ke real-world communication situations</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Pelaksanaan Penelitian - Introduction -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center px-6 py-10 relative">
+                <div class="relative z-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center">
+                            <i class="fas fa-users-cog text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white ml-4 title-font">Pelaksanaan Penelitian: Sosialisasi & Pelatihan</h2>
+                    </div>
+                    
+                    <div class="flex gap-6 items-start">
+                        <!-- Images on Left - 2x2 Grid -->
+                        <div class="flex-shrink-0 grid grid-cols-2 gap-3" style="width: 580px;">
+                            <!-- Image 1 -->
+                            <div class="bg-slate-900 rounded-xl p-2 shadow-2xl border-2 border-slate-700 expand-on-hover">
+                                <div class="bg-slate-700 rounded-lg overflow-hidden">
+                                    <img src="students1.jpg" alt="Students Introduction 1" class="w-full h-auto object-cover">
+                                </div>
+                            </div>
+                            
+                            <!-- Image 2 -->
+                            <div class="bg-slate-900 rounded-xl p-2 shadow-2xl border-2 border-slate-700 expand-on-hover">
+                                <div class="bg-slate-700 rounded-lg overflow-hidden">
+                                    <img src="students2.jpg" alt="Students Introduction 2" class="w-full h-auto object-cover">
+                                </div>
+                            </div>
+                            
+                            <!-- Image 3 -->
+                            <div class="bg-slate-900 rounded-xl p-2 shadow-2xl border-2 border-slate-700 expand-on-hover">
+                                <div class="bg-slate-700 rounded-lg overflow-hidden">
+                                    <img src="students3.jpg" alt="Students Introduction 3" class="w-full h-auto object-cover">
+                                </div>
+                            </div>
+                            
+                            <!-- Image 4 -->
+                            <div class="bg-slate-900 rounded-xl p-2 shadow-2xl border-2 border-slate-700 expand-on-hover">
+                                <div class="bg-slate-700 rounded-lg overflow-hidden">
+                                    <img src="students4.jpg" alt="Students Introduction 4" class="w-full h-auto object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanations on Right -->
+                        <div class="flex-1">
+                            <div class="bg-slate-800/85 p-6 rounded-2xl border border-emerald-100/50">
+                                <h3 class="font-bold text-xl text-emerald-400 mb-4">Sosialisasi Aplikasi VozVibe</h3>
+                                
+                                <div class="space-y-3 text-slate-300 text-sm">
+                                    <p class="flex items-start">
+                                        <i class="fas fa-calendar text-emerald-400 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span><strong>Periode penelitian:</strong> 15 September 2025 - 31 Oktober 2025 (46 hari)</span>
+                                    </p>
+                                    
+                                    <p class="flex items-start">
+                                        <i class="fas fa-users text-emerald-400 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span><strong>Responden:</strong> 100 peserta (50 siswa SMA 23 Batam - kelompok kontrol & eksperimen, 50 mahasiswa UNRIKA semester 5)</span>
+                                    </p>
+                                    
+                                    <p class="flex items-start">
+                                        <i class="fas fa-clipboard-list text-emerald-400 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span><strong>Pre-test:</strong> 12 September 2025 untuk mengukur baseline speaking skills sebelum intervensi</span>
+                                    </p>
+                                    
+                                    <p class="flex items-start">
+                                        <i class="fas fa-download text-emerald-400 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span><strong>Pelatihan instalasi:</strong> Panduan step-by-step download dari Website VozVibe, setup akun, dan konfigurasi profil pengguna</span>
+                                    </p>
+                                    
+                                    <p class="flex items-start">
+                                        <i class="fas fa-chalkboard-teacher text-emerald-400 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span><strong>Tutorial fitur:</strong> Pengenalan Speaking Journey, practice modes, AI Coach, leaderboard, dan sistem gamifikasi</span>
+                                    </p>
+                                    
+                                    <p class="flex items-start">
+                                        <i class="fas fa-clipboard-check text-emerald-400 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span><strong>Post-test:</strong> 31 Oktober 2025 untuk mengukur peningkatan speaking skills setelah penggunaan VozVibe</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Thank You -->
+        <div class="slide">
+            <div class="w-full h-full slide-content flex flex-col justify-center items-center p-10 relative">
+                <div class="relative z-10 text-center">
+                    <!-- VozVibe Logo/Icon -->
+                    <div class="mb-8">
+                        <div class="w-28 h-28 mx-auto rounded-3xl bg-slate-900/70 flex items-center justify-center shadow-2xl border border-purple-200/40">
+                            <img src="voicevibe-logo.jpeg" alt="VozVibe Logo" class="w-20 h-20 object-contain">
+                        </div>
+                    </div>
+
+                    <!-- Thank You Message -->
+                    <h1 class="text-6xl font-bold text-white mb-6 title-font">
+                        Terima Kasih
+                    </h1>
+                    
+                    <p class="text-2xl text-slate-300 mb-8">
+                        Thank You for Your Attention
+                    </p>
+
+                    <!-- Divider -->
+                    <div class="w-32 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto mb-8 rounded-full"></div>
+
+                    <!-- Contact Information -->
+                    <div class="space-y-4 text-slate-300">
+                        <p class="text-xl">
+                            <strong class="text-white">VozVibe Team 2025</strong>
+                        </p>
+                        <p class="text-lg">
+                            <i class="fas fa-user-tie text-cyan-400 mr-2"></i>
+                            <strong>Adam, S.Pd., M.Pd.</strong>
+                        </p>
+                        <p class="text-lg">
+                            <i class="fas fa-university text-cyan-400 mr-2"></i>
+                            Universitas Riau Kepulauan (UNRIKA)
+                        </p>
+                        <p class="text-lg">
+                            <i class="fas fa-map-marker-alt text-cyan-400 mr-2"></i>
+                            Batam, Indonesia
+                        </p>
+                    </div>
+
+                    <!-- Footer Quote -->
+                    <div class="mt-12 p-6 bg-slate-800/60 rounded-2xl border border-purple-100/30 max-w-2xl mx-auto">
+                        <p class="text-lg text-slate-300 italic">
+                            "Integrating Multimodal AI and Adaptive Gamification<br>Based on Indonesian Socio-Cultural Context<br>for Improving English Speaking Skills"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="fixed bottom-8 left-0 right-0 z-50 w-full px-8 pointer-events-none">
+        <div class="relative w-full max-w-7xl mx-auto flex justify-between items-center">
+            <button id="prevBtn" class="nav-btn group flex items-center gap-x-2 pl-4 pr-5 py-3 disabled:opacity-40 disabled:cursor-not-allowed pointer-events-auto">
+                <i class="fas fa-arrow-left text-white"></i>
+                <span class="font-semibold text-white">Sebelumnya</span>
+            </button>
+            
+            <div id="slide-counter" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-semibold text-white w-24 h-12 flex items-center justify-center bg-slate-800/50 rounded-full"></div>
+            
+            <button id="nextBtn" class="nav-btn group flex items-center gap-x-2 pl-5 pr-4 py-3 disabled:opacity-40 disabled:cursor-not-allowed pointer-events-auto">
+                <span class="font-semibold text-white">Selanjutnya</span>
+                <i class="fas fa-arrow-right text-white"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slide-counter');
+        const progressBar = document.getElementById('progress-bar');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentSlide = index;
+            updateNav();
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function updateNav() {
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) showSlide(currentSlide - 1);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            else if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        showSlide(0);
+
+        document.getElementById('presentation-container').addEventListener('click', (e) => {
+            if (e.target.id === 'presentation-container') {
+                const rect = e.target.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                if (clickX > rect.width / 2) nextSlide();
+                else prevSlide();
+            }
+        });
+
+        // Click to expand functionality
+        document.addEventListener('click', (e) => {
+            const expandable = e.target.closest('.expand-on-hover');
+            
+            if (expandable) {
+                e.stopPropagation();
+                
+                // Remove expanded class from all other elements
+                document.querySelectorAll('.expand-on-hover.expanded').forEach(el => {
+                    if (el !== expandable) {
+                        el.classList.remove('expanded');
+                    }
+                });
+                
+                // Toggle expanded class on clicked element
+                expandable.classList.toggle('expanded');
+            } else {
+                // Click outside - collapse all
+                document.querySelectorAll('.expand-on-hover.expanded').forEach(el => {
+                    el.classList.remove('expanded');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
