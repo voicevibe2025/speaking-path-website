@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computer-based Speaking Test – VozVibe Research</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        .cb-test-page {
+            color: #e5e7eb;
+        }
+        .cb-test-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #f9fafb;
+            margin-bottom: 0.5rem;
+        }
+        .cb-test-subtitle {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            max-width: 760px;
+        }
+        .cb-test-card {
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+        .cb-test-card h2,
+        .cb-test-card h3 {
+            color: #f9fafb;
+            margin-bottom: 0.5rem;
+        }
+        .cb-test-card p,
+        .cb-test-card ul,
+        .cb-test-card ol {
+            color: #e5e7eb;
+            font-size: 0.95rem;
+        }
+        .cb-test-card ul,
+        .cb-test-card ol {
+            padding-left: 1.25rem;
+            margin: 0.4rem 0 0.6rem;
+        }
+        .cb-label {
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+        .cb-form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0.5rem 0 1rem;
+        }
+        .cb-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 180px;
+        }
+        .cb-input,
+        .cb-select {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            background: rgba(15, 23, 42, 0.8);
+            color: #e5e7eb;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .cb-input::placeholder {
+            color: #6b7280;
+        }
+        .cb-record-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .cb-btn-record,
+        .cb-btn-stop {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .cb-btn-record {
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(248, 113, 113, 0.25);
+        }
+        .cb-btn-record:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 26px rgba(248, 113, 113, 0.35);
+        }
+        .cb-btn-stop {
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+        }
+        .cb-btn-stop:hover {
+            background: rgba(15, 23, 42, 1);
+        }
+        .cb-status {
+            margin-top: 0.4rem;
+            font-size: 0.85rem;
+            color: #a5b4fc;
+        }
+        .cb-recordings {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+        }
+        .cb-recordings a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+        .cb-recordings a:hover {
+            text-decoration: underline;
+        }
+        .cb-image {
+            display: block;
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            margin: 10px 0 14px;
+        }
+        .cb-nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.3);
+        }
+        .cb-btn-nav {
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: #fff;
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.25);
+        }
+        .cb-btn-nav:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 20px rgba(59, 130, 246, 0.35);
+        }
+        .cb-btn-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .cb-progress {
+            font-size: 0.9rem;
+            color: #a5b4fc;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        @media (max-width: 640px) {
+            .cb-form-row {
+                flex-direction: column;
+            }
+            .cb-nav-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container cb-test-page" id="cbSpeakingTest">
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <img src="vozvibe_logo2.png" alt="VozVibe Logo" class="app-logo" />
+                </div>
+                <div class="title-group">
+                    <h1 class="cb-test-title">Computer-based Speaking Test</h1>
+                    <p class="cb-test-subtitle">
+                        This page delivers the VozVibe speaking pre-test and post-test on a computer. Students read the prompts,
+                        record their answers, and save the audio files for later human scoring using the Speaking Assessment Rubric.
+                    </p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button">
+                    <i class="fas fa-home"></i> Main Page
+                </a>
+                <a href="speaking_test.html" class="nav-button" target="_blank" rel="noopener">
+                    <i class="fas fa-file-alt"></i> Test Specification
+                </a>
+                <a href="speaking_rubric.html" class="nav-button" target="_blank" rel="noopener">
+                    <i class="fas fa-microphone-alt"></i> Speaking Rubric
+                </a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="cb-test-card">
+                <h2>How to Use This Page</h2>
+                <p><span class="cb-label">Purpose:</span> Collect consistent speaking samples for research. The computer records the
+                    student, but scoring is still done by human raters later.</p>
+                <p><span class="cb-label">Instructions for students:</span></p>
+                <ul>
+                    <li>Use a computer with a microphone (preferably in a quiet room).</li>
+                    <li>Enter your ID and name below.</li>
+                    <li>Select whether you are doing the <strong>Pre-test (Version A)</strong> or <strong>Post-test (Version B)</strong>.</li>
+                    <li>For each part, read the prompt, click <strong>Start Recording</strong>, speak, then click <strong>Stop &amp; Save</strong>.</li>
+                    <li>After stopping, download and save the audio file with the suggested file name.</li>
+                    <li>Send the files to your teacher/researcher as instructed.</li>
+                </ul>
+                <p class="cb-status"><strong>Note:</strong> Your browser will ask for permission to use the microphone. Please click
+                    <em>Allow</em>.</p>
+
+                <div class="cb-form-row">
+                    <div class="cb-form-group">
+                        <label for="cbCandidateId" class="cb-label">Candidate ID</label>
+                        <input id="cbCandidateId" class="cb-input" type="text" placeholder="e.g., S001" />
+                    </div>
+                    <div class="cb-form-group">
+                        <label for="cbCandidateName" class="cb-label">Name</label>
+                        <input id="cbCandidateName" class="cb-input" type="text" placeholder="Your full name" />
+                    </div>
+                    <div class="cb-form-group">
+                        <label for="cbTestVersion" class="cb-label">Test Version</label>
+                        <select id="cbTestVersion" class="cb-select">
+                            <option value="pre">Pre-test (Version A)</option>
+                            <option value="post">Post-test (Version B)</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRE-TEST VERSION A -->
+            <section class="cb-test-card cb-test-section-pre" data-part-key="pre_part1">
+                <h3>Pre-test – Part 1: Warm-up &amp; Personal Information (3–4 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Talk about yourself. Include your name, age, what you do (study/work),
+                    your free-time activities, where you live, and your plans for the next few years.</p>
+                <p>Imagine the examiner asks you questions like:</p>
+                <ul>
+                    <li>"Can you tell me about yourself?"</li>
+                    <li>"What do you usually do in your free time?"</li>
+                    <li>"Please describe your hometown or the place where you live now."</li>
+                    <li>"What are your plans for the next few years?"</li>
+                </ul>
+                <p>Try to speak for about <strong>3–4 minutes</strong> without stopping the recording.</p>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('pre_part1')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('pre_part1')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-pre_part1"></div>
+                <div class="cb-recordings" id="cb-recordings-pre_part1"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+
+            <section class="cb-test-card cb-test-section-pre" data-part-key="pre_part2">
+                <h3>Pre-test – Part 2: Picture Description (4–5 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Look at the picture of a busy market below. Describe what you see and what
+                    might be happening.</p>
+                <img src="images/pre_market_scene.png" alt="Busy market scene" class="cb-image" />
+                <p>You can talk about:</p>
+                <ul>
+                    <li>Where the market might be.</li>
+                    <li>What the people are doing.</li>
+                    <li>What you think the place feels like (noisy, crowded, exciting, etc.).</li>
+                    <li>Whether you would like to visit this place and why.</li>
+                </ul>
+                <p>Try to speak for about <strong>1–2 minutes</strong> after a short moment to think.</p>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('pre_part2')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('pre_part2')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-pre_part2"></div>
+                <div class="cb-recordings" id="cb-recordings-pre_part2"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+
+            <section class="cb-test-card cb-test-section-pre" data-part-key="pre_part3">
+                <h3>Pre-test – Part 3: Role-play – Restaurant (5–6 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Imagine you are in a restaurant for the first time. You are the customer.
+                    You want to order food and ask about some items on the menu.</p>
+                <p>In your answer, try to:</p>
+                <ul>
+                    <li>Ask about at least two menu items (ingredients, spiciness, recommendation).</li>
+                    <li>Order a drink and a main course.</li>
+                    <li>Ask one more question (for example, about waiting time or dessert).</li>
+                </ul>
+                <p>Speak as if you are talking to the waiter/waitress for about <strong>5–6 minutes</strong>.</p>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('pre_part3')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('pre_part3')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-pre_part3"></div>
+                <div class="cb-recordings" id="cb-recordings-pre_part3"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+
+            <section class="cb-test-card cb-test-section-pre" data-part-key="pre_part4">
+                <h3>Pre-test – Part 4: Topic Discussion – Favourite Hobby (4–5 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Talk about your favourite hobby in detail.</p>
+                <p>You can answer questions like:</p>
+                <ul>
+                    <li>What is your favourite hobby, and when did you start it?</li>
+                    <li>Why do you enjoy this hobby?</li>
+                    <li>How often do you do it, and with whom?</li>
+                    <li>How has this hobby changed your life or your daily routine?</li>
+                    <li>Do you think you will still have this hobby in the future? Why or why not?</li>
+                </ul>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('pre_part4')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('pre_part4')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-pre_part4"></div>
+                <div class="cb-recordings" id="cb-recordings-pre_part4"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+
+            <!-- POST-TEST VERSION B -->
+            <section class="cb-test-card cb-test-section-post" data-part-key="post_part1">
+                <h3>Post-test – Part 1: Warm-up &amp; Daily Life (3–4 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Talk about your daily life. Include your daily routine on weekdays, what you
+                    usually do on weekends, and your goals for study or career.</p>
+                <p>Imagine the examiner asks you questions like:</p>
+                <ul>
+                    <li>"Can you tell me about your daily routine on a weekday?"</li>
+                    <li>"What do you usually do on weekends?"</li>
+                    <li>"Please describe the place where you study or work."</li>
+                    <li>"What goals do you have for your future study or career?"</li>
+                </ul>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('post_part1')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('post_part1')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-post_part1"></div>
+                <div class="cb-recordings" id="cb-recordings-post_part1"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+
+            <section class="cb-test-card cb-test-section-post" data-part-key="post_part2">
+                <h3>Post-test – Part 2: Picture Description (4–5 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Look at the picture of an airport below. Describe what you see and what might
+                    be happening.</p>
+                <img src="images/post_airport_scene.png" alt="Airport scene" class="cb-image" />
+                <p>You can talk about:</p>
+                <ul>
+                    <li>Where the people might be going or coming from.</li>
+                    <li>What people are doing in the picture.</li>
+                    <li>How you feel when you are at an airport.</li>
+                    <li>Whether you prefer travelling by plane or another type of transport, and why.</li>
+                </ul>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('post_part2')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('post_part2')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-post_part2"></div>
+                <div class="cb-recordings" id="cb-recordings-post_part2"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+
+            <section class="cb-test-card cb-test-section-post" data-part-key="post_part3">
+                <h3>Post-test – Part 3: Role-play – Returning a Purchase (5–6 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Imagine you bought a piece of clothing that does not fit you well. You return
+                    to the shop to explain the problem and ask to change or return it.</p>
+                <p>In your answer, try to:</p>
+                <ul>
+                    <li>Explain clearly what the problem is.</li>
+                    <li>Ask if you can exchange the item or get a refund.</li>
+                    <li>Respond to questions from the shop assistant (for example, about the receipt or when you bought it).</li>
+                </ul>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('post_part3')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('post_part3')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-post_part3"></div>
+                <div class="cb-recordings" id="cb-recordings-post_part3"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+
+            <section class="cb-test-card cb-test-section-post" data-part-key="post_part4">
+                <h3>Post-test – Part 4: Topic Discussion – Cultural Traditions (4–5 minutes)</h3>
+                <p><span class="cb-label">Prompt:</span> Talk about an important festival or tradition in your culture.</p>
+                <p>You can answer questions like:</p>
+                <ul>
+                    <li>What is the festival or tradition, and when does it happen?</li>
+                    <li>What do people usually do during this festival or tradition?</li>
+                    <li>Why is it important for you or for people in your country?</li>
+                    <li>Has it changed over time? How?</li>
+                    <li>Do you think young people will continue this tradition in the future? Why or why not?</li>
+                </ul>
+
+                <div class="cb-record-buttons">
+                    <button type="button" class="cb-btn-record" onclick="startSpeakingTestRecording('post_part4')">
+                        <i class="fas fa-circle"></i> Start Recording
+                    </button>
+                    <button type="button" class="cb-btn-stop" onclick="stopSpeakingTestRecording('post_part4')">
+                        <i class="fas fa-stop"></i> Stop &amp; Save
+                    </button>
+                </div>
+                <div class="cb-status" id="cb-status-post_part4"></div>
+                <div class="cb-recordings" id="cb-recordings-post_part4"></div>
+                
+                <div class="cb-nav-buttons">
+                    <button type="button" class="cb-btn-nav" id="cb-prev-btn" onclick="goToPreviousPart()">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button type="button" class="cb-btn-nav" id="cb-next-btn" onclick="goToNextPart()">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <span class="cb-progress" id="cb-progress"></span>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 VozVibe. All rights reserved.</p>
+                <p class="app-owner">App Owner: Adam, S.Pd., M.Pd. – Team leader of VozVibe App project 2025.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
