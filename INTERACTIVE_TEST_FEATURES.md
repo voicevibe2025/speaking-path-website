@@ -141,12 +141,15 @@ See `SUPABASE_SETUP.md` for detailed instructions.
 
 ### New Files
 - ✅ `speaking_test_interactive.html` - Main test interface
+- ✅ `speaking_test_practice.html` - Practice test interface
+- ✅ `script_practice.js` - Practice test logic (no recordings saved)
 - ✅ `SUPABASE_SETUP.md` - Setup instructions
+- ✅ `PRACTICE_TEST_GUIDE.md` - Practice test documentation
 - ✅ `INTERACTIVE_TEST_FEATURES.md` - This file
 
 ### Modified Files
 - ✅ `script.js` - Added Supabase upload logic (lines 542-950)
-- ✅ `index.html` - Added "Interactive Test" button
+- ✅ `index.html` - Added "Practice Test" and "Interactive Test" buttons
 
 ---
 
@@ -187,17 +190,35 @@ See `SUPABASE_SETUP.md` for detailed instructions.
 
 ### Testing Phase
 1. ✅ Configure Supabase (follow SUPABASE_SETUP.md)
-2. ✅ Test recording + upload yourself
-3. ✅ Pilot test with 2-3 students
-4. ✅ Check file quality in Supabase
-5. ✅ Verify file naming and organization
+2. ✅ Test practice mode yourself
+3. ✅ Test actual recording + upload yourself
+4. ✅ Pilot test with 2-3 students
+5. ✅ Check file quality in Supabase
+6. ✅ Verify file naming and organization
 
-### Data Collection Phase
-1. ✅ Give students the test URL
-2. ✅ Monitor uploads in Supabase dashboard
-3. ✅ Download recordings for scoring
-4. ✅ Use rubric to score (speaking_rubric.html)
-5. ✅ Calculate inter-rater reliability
+### Data Collection Phase - Recommended Workflow
+
+**Session 1: Practice (10-15 min)**
+1. ✅ Students complete `speaking_test_practice.html` (4 questions, no recordings saved)
+2. ✅ Get comfortable with interface
+3. ✅ Ask any technical questions
+
+**Session 2: Pre-Test (30-45 min)**
+1. ✅ Students complete `speaking_test_interactive.html` (Pre-test, 12 questions)
+2. ✅ Recordings automatically upload to Supabase
+3. ✅ Monitor uploads in dashboard
+
+**Intervention Period**
+- Students use VozVibe app
+
+**Session 3: Post-Test (30-45 min)**
+1. ✅ Students complete `speaking_test_interactive.html` (Post-test, 12 questions)
+2. ✅ Recordings automatically upload to Supabase
+
+**Scoring Phase**
+1. ✅ Download recordings from Supabase
+2. ✅ Use rubric to score (speaking_rubric.html)
+3. ✅ Calculate inter-rater reliability
 
 ### Post-Data Collection
 1. ✅ Export recordings from Supabase

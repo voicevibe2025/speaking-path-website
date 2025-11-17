@@ -38,13 +38,14 @@ The **Practice Speaking Test** allows students to familiarize themselves with th
 - ✅ One-attempt-only (no re-recording)
 - ✅ No Previous button
 - ✅ Auto-advance after recording
-- ✅ Supabase upload
+- ✅ Start/Stop recording buttons
+- ✅ Timer display
 
 ### Differences from Actual Test:
 - 📝 **4 simple questions** instead of 12
 - 📝 **Shorter duration** (30-45 seconds per question)
 - 📝 **Easy topics** (favorite color, breakfast, weekend, weather)
-- 📝 **Saves to different folder** (`practice-tests/` instead of `speaking-tests/`)
+- 📝 **NO RECORDINGS SAVED** (purely for interface practice)
 - 📝 **Green theme** vs blue theme (visual distinction)
 
 ---
@@ -86,21 +87,15 @@ These questions are intentionally simple and non-threatening to help students re
 
 ## File Storage
 
-Practice recordings are saved to Supabase in a separate folder:
+**Practice recordings are NOT saved anywhere.**
 
-```
-vozvibe-recordings/
-└── practice-tests/
-    ├── S001/
-    │   ├── S001_practice_q0.webm
-    │   ├── S001_practice_q1.webm
-    │   ├── S001_practice_q2.webm
-    │   └── S001_practice_q3.webm
-    ├── S002/
-    └── ...
-```
+The practice test only familiarizes students with:
+- ✅ How to click "Start Recording"
+- ✅ How the timer works
+- ✅ How to click "Stop Recording"
+- ✅ How auto-advance works
 
-This keeps practice recordings separate from actual test data.
+No audio files are saved to Supabase or downloaded to the student's computer. This reduces storage costs and makes the practice session faster.
 
 ---
 
@@ -131,7 +126,7 @@ This keeps practice recordings separate from actual test data.
 
 Example text for your thesis:
 
-> **Test Administration**: Prior to data collection, all participants completed a brief practice session (4 questions, approximately 10 minutes) to familiarize themselves with the computer-based recording interface and reduce potential anxiety related to technology use. This practice session ensured that all participants were equally comfortable with the test delivery system before completing the actual speaking tests. The practice session used simple, non-test content and recordings were stored separately from test data.
+> **Test Administration**: Prior to data collection, all participants completed a brief practice session (4 questions, approximately 10 minutes) to familiarize themselves with the computer-based recording interface and reduce potential anxiety related to technology use. This practice session ensured that all participants were equally comfortable with the test delivery system before completing the actual speaking tests. The practice session used simple, non-test content and recordings were not saved, as the purpose was solely interface familiarization.
 
 ---
 
@@ -142,10 +137,10 @@ Example text for your thesis:
 - `script_practice.js` - Practice test JavaScript logic
 
 ### Configuration:
-- Uses same Supabase credentials as actual test
-- Saves to `practice-tests/` bucket folder
+- No Supabase connection needed
+- No files saved anywhere
 - 4 questions total
-- No scoring needed (just for familiarization)
+- No scoring (just for interface familiarization)
 
 ---
 
@@ -155,28 +150,26 @@ Example text for your thesis:
 - Check microphone permissions in browser
 - Ensure Chrome/Edge (not Safari)
 - Test with Practice Question 1 first
-
-### Recording Doesn't Upload:
-- Check internet connection
-- Files will download locally as backup
-- Practice recordings are optional (actual test is what matters)
+- Recording not working? That's okay - just click through to see the interface
 
 ### Students Anxious About Practice:
 - Emphasize it's PRACTICE only
+- **Recordings are NOT saved** - no one will hear them
 - No scoring, no judgment
-- They can speak in any language if nervous
-- The goal is just to learn the buttons
+- They can speak in any language, or just count "1, 2, 3..."
+- The goal is just to learn the buttons and interface
 
 ---
 
 ## Summary
 
 ✅ **Purpose**: Familiarize students with interface  
-✅ **Duration**: ~10 minutes  
+✅ **Duration**: ~5-10 minutes  
 ✅ **Questions**: 4 simple, easy topics  
-✅ **Storage**: Separate `practice-tests/` folder  
+✅ **Storage**: No recordings saved  
 ✅ **Research Value**: Reduces confounding variables, improves data quality  
-✅ **Student Benefit**: Less anxiety, better actual test performance
+✅ **Student Benefit**: Less anxiety, better actual test performance  
+✅ **Efficiency**: Fast, no storage costs, purely educational
 
 ---
 

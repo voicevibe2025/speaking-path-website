@@ -1,12 +1,8 @@
 // ========================================
 // Practice Speaking Test
 // ========================================
-
-// Use same Supabase configuration from script.js
-const PRACTICE_SUPABASE_URL = typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : 'https://tteyzluxugggatteosms.supabase.co';
-const PRACTICE_SUPABASE_ANON_KEY = typeof SUPABASE_ANON_KEY !== 'undefined' ? SUPABASE_ANON_KEY : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0ZXl6bHV4dWdnZ2F0dGVvc21zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNTY2OTksImV4cCI6MjA3ODkzMjY5OX0.ky64JXHN-u3f6G2OEJGf0WkxdtJ7W5Z1UsdrGrFu-4c';
-
-let practiceSupabase = null;
+// NOTE: Practice mode does NOT save any recordings.
+// It's purely for interface familiarization.
 
 let practiceTestData = {
     studentId: '',
@@ -26,25 +22,25 @@ const practiceQuestions = [
     {
         part: "Practice Question 1",
         question: "What is your favorite color and why?",
-        details: "This is just a practice question. Speak for about 30 seconds.",
+        details: "This is just practice. Your recording will NOT be saved. Speak for about 30 seconds.",
         duration: "30 seconds"
     },
     {
         part: "Practice Question 2",
         question: "What did you eat for breakfast today?",
-        details: "Describe your breakfast in simple sentences. Practice using the recording button.",
+        details: "Practice using the recording button. Your recording will NOT be saved.",
         duration: "30 seconds"
     },
     {
         part: "Practice Question 3",
         question: "What do you like to do on weekends?",
-        details: "Talk about your favorite weekend activities. This is still practice!",
+        details: "Keep practicing! Your recording will NOT be saved.",
         duration: "45 seconds"
     },
     {
         part: "Practice Question 4",
         question: "Describe the weather today.",
-        details: "Tell me about today's weather. This is the last practice question!",
+        details: "Last practice question! Your recording will NOT be saved.",
         duration: "30 seconds"
     }
 ];
@@ -56,17 +52,6 @@ function startPracticeTest() {
     if (!studentId || !studentName) {
         alert('Please enter your Student ID and Name.');
         return;
-    }
-
-    // Initialize Supabase client
-    if (PRACTICE_SUPABASE_URL && PRACTICE_SUPABASE_ANON_KEY) {
-        try {
-            practiceSupabase = window.supabase.createClient(PRACTICE_SUPABASE_URL, PRACTICE_SUPABASE_ANON_KEY);
-            console.log('Practice test: Supabase initialized');
-        } catch (error) {
-            console.error('Supabase initialization error:', error);
-            practiceSupabase = null;
-        }
     }
 
     practiceTestData.studentId = studentId;
@@ -110,7 +95,7 @@ function displayPracticeQuestion() {
         html += `
             <div class="recording-controls">
                 <div class="recording-status" style="color: #10b981; font-size: 1.1rem;">
-                    ✅ Recording completed and uploaded
+                    ✅ Practice completed!
                 </div>
             </div>
         `;
@@ -259,7 +244,7 @@ function stopPracticeTimer() {
     }
 }
 
-async function savePracticeRecording() {
+function savePracticeRecording() {
     if (!practiceTestData.recordedChunks.length) {
         alert('No audio was captured. Please try again.');
         practiceTestData.isRecording = false;
@@ -268,65 +253,26 @@ async function savePracticeRecording() {
     }
 
     const currentQuestionIndex = practiceTestData.currentQuestion;
-    const blob = new Blob(practiceTestData.recordedChunks, { type: 'audio/webm' });
-    const questionKey = `practice_q${practiceTestData.currentQuestion}`;
-    const filename = `${practiceTestData.studentId}_${questionKey}.webm`;
     
-    // Mark as recorded
+    // Mark as recorded (but don't save the recording)
     practiceTestData.hasRecorded.push(currentQuestionIndex);
-    practiceTestData.recordings[questionKey] = { blob, filename };
 
-    // Update UI
+    // Update UI to show completion
     displayPracticeQuestion();
     const statusEl = document.getElementById('recordingStatus');
     if (statusEl) {
-        statusEl.innerHTML = '☁️ Uploading practice recording...';
-    }
-
-    // Upload to Supabase (practice folder)
-    if (practiceSupabase) {
-        try {
-            const filePath = `practice-tests/${practiceTestData.studentId}/${filename}`;
-            
-            const { data, error } = await practiceSupabase.storage
-                .from('vozvibe-recordings')
-                .upload(filePath, blob, {
-                    contentType: 'audio/webm',
-                    upsert: false
-                });
-
-            if (error) {
-                console.error('Supabase upload error:', error);
-                throw error;
-            }
-
-            console.log('Practice upload successful:', data);
-            
-            if (statusEl) {
-                statusEl.innerHTML = '✅ Upload successful!';
-            }
-        } catch (error) {
-            console.error('Upload failed:', error);
-            
-            if (statusEl) {
-                statusEl.innerHTML = '✅ Practice recording saved (upload skipped)';
-            }
-        }
-    } else {
-        if (statusEl) {
-            statusEl.innerHTML = '✅ Practice recording completed';
-        }
+        statusEl.innerHTML = '✅ Practice recording completed!';
     }
 
     // Update navigation
     updatePracticeNavButtons();
 
-    // Auto-advance after 2 seconds
+    // Auto-advance after 1.5 seconds
     setTimeout(() => {
         if (practiceTestData.currentQuestion < practiceTestData.questions.length - 1) {
             goToNextQuestion();
         }
-    }, 2000);
+    }, 1500);
 }
 
 function finishPracticeTest() {
