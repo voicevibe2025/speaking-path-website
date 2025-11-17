@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speaking Assessment Rubric - VozVibe</title>
+
+    <!-- Reuse VozVibe styles and fonts -->
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Page-specific table styling -->
+    <style>
+        .rubric-page {
+            color: #e5e7eb;
+        }
+        .rubric-header-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #f9fafb;
+            margin-bottom: 0.5rem;
+        }
+        .rubric-subtitle {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+        .rubric-section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .rubric-table-wrapper {
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(15, 23, 42, 0.6);
+        }
+        .rubric-table th,
+        .rubric-table td {
+            border: 1px solid rgba(51, 65, 85, 0.9);
+            padding: 10px 12px;
+            vertical-align: top;
+            font-size: 0.95rem;
+        }
+        .rubric-table th {
+            background: radial-gradient(circle at top left, #00d4aa 0%, #4f46e5 60%, #ec4899 100%);
+            color: #f9fafb;
+            text-align: left;
+            font-weight: 600;
+        }
+        .rubric-total-points {
+            font-style: italic;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .back-link i {
+            font-size: 0.9rem;
+        }
+        .back-link:hover {
+            color: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container rubric-page">
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <img src="vozvibe_logo2.png" alt="VozVibe Logo" class="app-logo" />
+                </div>
+                <div class="title-group">
+                    <h1 class="rubric-header-title">Speaking Assessment Rubric</h1>
+                    <p class="rubric-subtitle">VozVibe speaking rubric for evaluating student speaking performance (Total: 50 points).</p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button">
+                    <i class="fas fa-home"></i> Back to Main Page
+                </a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section>
+                <p class="rubric-total-points">Total score: <strong>50 points</strong> (5 criteria × 10 points each)</p>
+
+                <h2 class="rubric-section-title">1. Fluency and Coherence (10 points)</h2>
+                <div class="rubric-table-wrapper">
+                    <table class="rubric-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Score</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9–10</td>
+                                <td>Speaks fluently with minimal hesitation. Ideas are connected coherently with appropriate linking words.</td>
+                            </tr>
+                            <tr>
+                                <td>7–8</td>
+                                <td>Speaks with occasional hesitation. Most ideas are connected, though some awkward transitions may occur.</td>
+                            </tr>
+                            <tr>
+                                <td>5–6</td>
+                                <td>Frequent pauses and repetition. Basic connection of ideas, but coherence may be affected.</td>
+                            </tr>
+                            <tr>
+                                <td>3–4</td>
+                                <td>Slow, halting speech with long pauses. Difficulty connecting ideas.</td>
+                            </tr>
+                            <tr>
+                                <td>1–2</td>
+                                <td>Unable to maintain flow of speech. Severe coherence issues.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="rubric-section-title">2. Pronunciation and Intonation (10 points)</h2>
+                <div class="rubric-table-wrapper">
+                    <table class="rubric-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Score</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9–10</td>
+                                <td>Clear pronunciation with appropriate intonation and stress. Easy to understand.</td>
+                            </tr>
+                            <tr>
+                                <td>7–8</td>
+                                <td>Generally clear pronunciation with minor errors. Intonation mostly appropriate.</td>
+                            </tr>
+                            <tr>
+                                <td>5–6</td>
+                                <td>Pronunciation sometimes unclear. Some incorrect stress and intonation patterns.</td>
+                            </tr>
+                            <tr>
+                                <td>3–4</td>
+                                <td>Frequent pronunciation errors that occasionally hinder understanding.</td>
+                            </tr>
+                            <tr>
+                                <td>1–2</td>
+                                <td>Severe pronunciation problems making speech difficult to understand.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="rubric-section-title">3. Vocabulary Range and Accuracy (10 points)</h2>
+                <div class="rubric-table-wrapper">
+                    <table class="rubric-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Score</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9–10</td>
+                                <td>Uses wide range of vocabulary appropriately. Good command of idiomatic expressions.</td>
+                            </tr>
+                            <tr>
+                                <td>7–8</td>
+                                <td>Sufficient vocabulary for topics. Occasional errors in word choice.</td>
+                            </tr>
+                            <tr>
+                                <td>5–6</td>
+                                <td>Basic vocabulary adequate for familiar topics. Limited range for abstract topics.</td>
+                            </tr>
+                            <tr>
+                                <td>3–4</td>
+                                <td>Limited vocabulary requiring frequent simplification and circumlocution.</td>
+                            </tr>
+                            <tr>
+                                <td>1–2</td>
+                                <td>Severe vocabulary limitations hindering communication.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="rubric-section-title">4. Grammatical Range and Accuracy (10 points)</h2>
+                <div class="rubric-table-wrapper">
+                    <table class="rubric-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Score</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9–10</td>
+                                <td>Uses complex structures accurately. Minor errors don't affect communication.</td>
+                            </tr>
+                            <tr>
+                                <td>7–8</td>
+                                <td>Good control of simple structures, attempts complex ones with some errors.</td>
+                            </tr>
+                            <tr>
+                                <td>5–6</td>
+                                <td>Uses basic sentence patterns. Errors in complex structures but meaning clear.</td>
+                            </tr>
+                            <tr>
+                                <td>3–4</td>
+                                <td>Frequent grammatical errors that sometimes obscure meaning.</td>
+                            </tr>
+                            <tr>
+                                <td>1–2</td>
+                                <td>Severe grammatical errors making communication difficult.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="rubric-section-title">5. Pragmatic and Socio-cultural Competence (10 points)</h2>
+                <div class="rubric-table-wrapper">
+                    <table class="rubric-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Score</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>9–10</td>
+                                <td>Uses language appropriately for context. Good understanding of cultural norms.</td>
+                            </tr>
+                            <tr>
+                                <td>7–8</td>
+                                <td>Generally appropriate language use. Minor pragmatic errors.</td>
+                            </tr>
+                            <tr>
+                                <td>5–6</td>
+                                <td>Basic pragmatic competence. Some inappropriate language choices.</td>
+                            </tr>
+                            <tr>
+                                <td>3–4</td>
+                                <td>Frequent pragmatic errors affecting social appropriateness.</td>
+                            </tr>
+                            <tr>
+                                <td>1–2</td>
+                                <td>Severe difficulties with pragmatic aspects of communication.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 VozVibe. All rights reserved.</p>
+                <p class="app-owner">App Owner: Adam, S.Pd., M.Pd. – Team leader of VozVibe App project 2025.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
