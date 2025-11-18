@@ -859,7 +859,8 @@ async function saveInteractiveRecording() {
 
     const currentQuestionIndex = interactiveTestData.currentQuestion;
     const blob = new Blob(interactiveTestData.recordedChunks, { type: 'audio/webm' });
-    const questionKey = `q${interactiveTestData.currentQuestion}`;
+    const displayQuestionNumber = currentQuestionIndex + 1;
+    const questionKey = `q${displayQuestionNumber}`;
     const filename = `${interactiveTestData.studentId}_${interactiveTestData.testVersion}_${questionKey}.webm`;
     
     // Mark as recorded (one-attempt-only)
