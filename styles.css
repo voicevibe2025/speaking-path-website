@@ -9,7 +9,7 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(180deg, #3D3A7C 0%, #4A4E96 25%, #5367B8 50%, #5C72BE 60%, #5367B8 75%, #4A4E96 90%, #3D3A7C 100%);
     min-height: 100vh;
 }
 
@@ -57,14 +57,14 @@ body {
     width: 80px;
     height: 80px;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
     object-fit: contain;
 }
 
 .app-title {
     font-size: 3.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #00d4aa 0%, #4f46e5 50%, #ec4899 100%);
+    background: linear-gradient(135deg, #06B6D4 0%, #6366F1 50%, #C026D3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -172,7 +172,7 @@ body {
 .feature-card i {
     font-size: 3rem;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #00d4aa 0%, #4f46e5 50%, #ec4899 100%);
+    background: linear-gradient(135deg, #06B6D4 0%, #6366F1 50%, #C026D3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -287,24 +287,24 @@ body {
 }
 
 .download-btn.primary {
-    background: linear-gradient(135deg, #00d4aa 0%, #4f46e5 100%);
+    background: linear-gradient(135deg, #06B6D4 0%, #6366F1 100%);
     color: white;
-    box-shadow: 0 10px 20px rgba(0, 212, 170, 0.3);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
 }
 
 .download-btn.primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(0, 212, 170, 0.4);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);
 }
 
 .download-btn.secondary {
     background: transparent;
-    color: #4f46e5;
-    border: 2px solid #4f46e5;
+    color: #6366F1;
+    border: 2px solid #6366F1;
 }
 
 .download-btn.secondary:hover {
-    background: #4f46e5;
+    background: #6366F1;
     color: white;
     transform: translateY(-2px);
 }
@@ -656,13 +656,13 @@ body {
 }
 
 .resource-card.highlight-card {
-    border: 2px solid rgba(16, 185, 129, 0.3);
-    background: rgba(16, 185, 129, 0.05);
+    border: 2px solid rgba(99, 102, 241, 0.4);
+    background: rgba(99, 102, 241, 0.08);
 }
 
 .resource-card.highlight-card:hover {
-    border-color: rgba(16, 185, 129, 0.6);
-    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.3);
+    border-color: rgba(99, 102, 241, 0.7);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
 }
 
 .resource-card.compact-card {
@@ -681,20 +681,20 @@ body {
 }
 
 .card-icon.primary {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #ADF264 0%, #10b981 100%);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 8px 20px rgba(173, 242, 100, 0.3);
 }
 
 .card-icon.success {
-    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    background: linear-gradient(135deg, #06B6D4 0%, #6366F1 100%);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
 }
 
 .card-icon.secondary {
     background: rgba(99, 102, 241, 0.15);
-    color: #818cf8;
+    color: #a5b4fc;
 }
 
 .card-icon.info {
@@ -741,26 +741,27 @@ body {
 }
 
 .card-button.primary {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #ADF264 0%, #10b981 100%);
+    color: #1a1b2e;
+    font-weight: 700;
     border: none;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 4px 12px rgba(173, 242, 100, 0.4);
 }
 
 .card-button.primary:hover {
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 20px rgba(173, 242, 100, 0.6);
     transform: translateY(-2px);
 }
 
 .card-button.success {
-    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    background: linear-gradient(135deg, #06B6D4 0%, #6366F1 100%);
     color: #fff;
     border: none;
-    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
 }
 
 .card-button.success:hover {
-    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
     transform: translateY(-2px);
 }
 
