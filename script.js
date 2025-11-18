@@ -933,10 +933,12 @@ async function saveInteractiveRecording() {
     // Update navigation buttons
     updateNavButtons();
 
-    // Auto-advance after 2 seconds
+    // Auto-advance or finish after 2 seconds
     setTimeout(() => {
         if (interactiveTestData.currentQuestion < interactiveTestData.questions.length - 1) {
             goToNextQuestion();
+        } else {
+            finishTest();
         }
     }, 2000);
 }
