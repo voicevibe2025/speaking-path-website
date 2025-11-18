@@ -568,38 +568,38 @@ let interactiveTestData = {
 
 const testQuestions = {
     pre: [
-        { part: "Part 1: Introduction", question: "Can you tell me about yourself?", details: "Please mention your name, age, what you study or do for work.", duration: "1-2 minutes" },
-        { part: "Part 1: Introduction", question: "What do you usually do in your free time?", details: "Talk about your hobbies and activities you enjoy.", duration: "1 minute" },
-        { part: "Part 1: Introduction", question: "Please describe your hometown or the place where you live now.", details: "Describe the place, what it's like, and what you like about it.", duration: "1-2 minutes" },
-        { part: "Part 1: Introduction", question: "What are your plans for the next few years?", details: "Talk about your goals for study, career, or personal life.", duration: "1 minute" },
+        { part: "Part 1: Introduction", question: "Can you tell me about yourself?", details: "Please mention your name, age, what you study or do for work.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 1: Introduction", question: "What do you usually do in your free time?", details: "Talk about your hobbies and activities you enjoy.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 1: Introduction", question: "Please describe your hometown or the place where you live now.", details: "Describe the place, what it's like, and what you like about it.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 1: Introduction", question: "What are your plans for the next few years?", details: "Talk about your goals for study, career, or personal life.", duration: "30-45 seconds", maxSeconds: 45 },
         
-        { part: "Part 2: Picture Description", question: "Look at this picture and describe what you see.", image: "images/pre_market_scene.png", details: "Describe what's happening in the market scene. Talk about the people, the place, and what you think might be happening.", duration: "2-3 minutes" },
+        { part: "Part 2: Picture Description", question: "Look at this picture and describe what you see.", image: "images/pre_market_scene.png", details: "Describe what's happening in the market scene. Talk about the people, the place, and what you think might be happening.", duration: "30-45 seconds", maxSeconds: 45 },
         
-        { part: "Part 3: Role-play (Restaurant)", question: "Imagine you're in a restaurant. What would you like to order?", details: "Ask the waiter about menu items, ingredients, or recommendations. Then order a drink and a main course.", duration: "2-3 minutes" },
-        { part: "Part 3: Role-play (Restaurant)", question: "Can you ask the waiter about waiting time or dessert options?", details: "Continue your conversation with the waiter about other aspects of your meal.", duration: "1-2 minutes" },
+        { part: "Part 3: Role-play (Restaurant)", question: "Imagine you're in a restaurant. What would you like to order?", details: "Ask the waiter about menu items, ingredients, or recommendations. Then order a drink and a main course.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 3: Role-play (Restaurant)", question: "Can you ask the waiter about waiting time or dessert options?", details: "Continue your conversation with the waiter about other aspects of your meal.", duration: "30-45 seconds", maxSeconds: 45 },
         
-        { part: "Part 4: Discussion (Hobby)", question: "What is your favourite hobby, and when did you start it?", details: "Explain what the hobby is and how you got started with it.", duration: "1-2 minutes" },
-        { part: "Part 4: Discussion (Hobby)", question: "Why do you enjoy this hobby?", details: "Describe what you like about it and how it makes you feel.", duration: "1 minute" },
-        { part: "Part 4: Discussion (Hobby)", question: "How often do you do it, and with whom?", details: "Talk about your routine and if you do it alone or with others.", duration: "1 minute" },
-        { part: "Part 4: Discussion (Hobby)", question: "How has this hobby changed your life or daily routine?", details: "Explain any impact it has had on you.", duration: "1-2 minutes" },
-        { part: "Part 4: Discussion (Hobby)", question: "Do you think you will still have this hobby in the future? Why or why not?", details: "Share your thoughts about continuing this hobby.", duration: "1 minute" }
+        { part: "Part 4: Discussion (Hobby)", question: "What is your favourite hobby, and when did you start it?", details: "Explain what the hobby is and how you got started with it.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Hobby)", question: "Why do you enjoy this hobby?", details: "Describe what you like about it and how it makes you feel.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Hobby)", question: "How often do you do it, and with whom?", details: "Talk about your routine and if you do it alone or with others.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Hobby)", question: "How has this hobby changed your life or daily routine?", details: "Explain any impact it has had on you.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Hobby)", question: "Do you think you will still have this hobby in the future? Why or why not?", details: "Share your thoughts about continuing this hobby.", duration: "30-45 seconds", maxSeconds: 45 }
     ],
     post: [
-        { part: "Part 1: Daily Life", question: "Can you tell me about your daily routine on a weekday?", details: "Describe what you do from morning to evening.", duration: "1-2 minutes" },
-        { part: "Part 1: Daily Life", question: "What do you usually do on weekends?", details: "Talk about your typical weekend activities.", duration: "1 minute" },
-        { part: "Part 1: Daily Life", question: "Please describe the place where you study or work.", details: "Describe the environment, what it's like, and how you feel about it.", duration: "1-2 minutes" },
-        { part: "Part 1: Daily Life", question: "What goals do you have for your future study or career?", details: "Share your plans and ambitions.", duration: "1 minute" },
+        { part: "Part 1: Daily Life", question: "Can you tell me about your daily routine on a weekday?", details: "Describe what you do from morning to evening.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 1: Daily Life", question: "What do you usually do on weekends?", details: "Talk about your typical weekend activities.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 1: Daily Life", question: "Please describe the place where you study or work.", details: "Describe the environment, what it's like, and how you feel about it.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 1: Daily Life", question: "What goals do you have for your future study or career?", details: "Share your plans and ambitions.", duration: "30-45 seconds", maxSeconds: 45 },
         
-        { part: "Part 2: Picture Description", question: "Look at this picture and describe what you see.", image: "images/post_airport_scene.png", details: "Describe what's happening at the airport. Talk about the people, the atmosphere, and what might be happening.", duration: "2-3 minutes" },
+        { part: "Part 2: Picture Description", question: "Look at this picture and describe what you see.", image: "images/post_airport_scene.png", details: "Describe what's happening at the airport. Talk about the people, the atmosphere, and what might be happening.", duration: "30-45 seconds", maxSeconds: 45 },
         
-        { part: "Part 3: Role-play (Returning Purchase)", question: "Imagine you bought clothing that doesn't fit. How would you explain the problem to the shop assistant?", details: "Describe the problem clearly and mention that you have the receipt.", duration: "2-3 minutes" },
-        { part: "Part 3: Role-play (Returning Purchase)", question: "What would you like to do - exchange it or get a refund?", details: "Continue your conversation with the shop assistant about solutions.", duration: "1-2 minutes" },
+        { part: "Part 3: Role-play (Returning Purchase)", question: "Imagine you bought clothing that doesn't fit. How would you explain the problem to the shop assistant?", details: "Describe the problem clearly and mention that you have the receipt.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 3: Role-play (Returning Purchase)", question: "What would you like to do - exchange it or get a refund?", details: "Continue your conversation with the shop assistant about solutions.", duration: "30-45 seconds", maxSeconds: 45 },
         
-        { part: "Part 4: Discussion (Culture)", question: "Please describe an important festival or tradition in your culture.", details: "Explain what it is and when it happens.", duration: "1-2 minutes" },
-        { part: "Part 4: Discussion (Culture)", question: "What do people usually do during this festival or tradition?", details: "Describe the activities and customs.", duration: "1-2 minutes" },
-        { part: "Part 4: Discussion (Culture)", question: "Why is this festival or tradition important for you or for people in your country?", details: "Explain its significance and meaning.", duration: "1 minute" },
-        { part: "Part 4: Discussion (Culture)", question: "How has this festival or tradition changed over time, if at all?", details: "Talk about any changes you've noticed.", duration: "1-2 minutes" },
-        { part: "Part 4: Discussion (Culture)", question: "Do you think young people will continue this tradition in the future? Why or why not?", details: "Share your opinion about the future of this tradition.", duration: "1 minute" }
+        { part: "Part 4: Discussion (Culture)", question: "Please describe an important festival or tradition in your culture.", details: "Explain what it is and when it happens.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Culture)", question: "What do people usually do during this festival or tradition?", details: "Describe the activities and customs.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Culture)", question: "Why is this festival or tradition important for you or for people in your country?", details: "Explain its significance and meaning.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Culture)", question: "How has this festival or tradition changed over time, if at all?", details: "Talk about any changes you've noticed.", duration: "30-45 seconds", maxSeconds: 45 },
+        { part: "Part 4: Discussion (Culture)", question: "Do you think young people will continue this tradition in the future? Why or why not?", details: "Share your opinion about the future of this tradition.", duration: "30-45 seconds", maxSeconds: 45 }
     ]
 };
 
@@ -810,12 +810,35 @@ function stopInteractiveRecording() {
 let timerInterval = null;
 
 function startTimer() {
+    // Clear any existing timer before starting a new one
+    stopTimer();
+
+    const q = interactiveTestData.questions[interactiveTestData.currentQuestion];
+    const maxSeconds = q && typeof q.maxSeconds === 'number' ? q.maxSeconds : 45;
+    const timerEl = document.getElementById('recordingTimer');
+
+    if (!timerEl) {
+        return;
+    }
+
+    // Set initial display (full remaining time)
+    const initialMinutes = Math.floor(maxSeconds / 60);
+    const initialSeconds = maxSeconds % 60;
+    timerEl.textContent = `${initialMinutes}:${initialSeconds.toString().padStart(2, '0')}`;
+
     timerInterval = setInterval(() => {
         const elapsed = Math.floor((Date.now() - interactiveTestData.startTime) / 1000);
-        const minutes = Math.floor(elapsed / 60);
-        const seconds = elapsed % 60;
-        document.getElementById('recordingTimer').textContent = 
-            `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        const remaining = maxSeconds - elapsed;
+
+        const clamped = Math.max(remaining, 0);
+        const minutes = Math.floor(clamped / 60);
+        const seconds = clamped % 60;
+        timerEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        // Auto-stop recording when time is up
+        if (remaining <= 0) {
+            stopInteractiveRecording();
+        }
     }, 1000);
 }
 
