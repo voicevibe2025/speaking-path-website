@@ -545,10 +545,10 @@ function stopSpeakingTestRecording(partKey) {
 
 // Supabase Configuration
 // Your Supabase URL from .env:
-const SUPABASE_URL = 'https://tteyzluxugggatteosms.supabase.co';
+const SUPABASE_URL = 'https://ghsrluoqcwfbiierjpqk.supabase.co';
 // IMPORTANT: Replace with ANON KEY (not service_role_key!)
 // Get it from: Supabase Dashboard > Settings > API > anon public key
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0ZXl6bHV4dWdnZ2F0dGVvc21zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNTY2OTksImV4cCI6MjA3ODkzMjY5OX0.ky64JXHN-u3f6G2OEJGf0WkxdtJ7W5Z1UsdrGrFu-4c';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc3JsdW9xY3dmYmlpZXJqcHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1NDUwNTYsImV4cCI6MjA3MTEyMTA1Nn0.fpVWk_yY7Qrpb8NxlH_bPYGJFE-efFEyeI2rXD1wMiY';
 
 let supabase = null;
 
