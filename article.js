@@ -3,8 +3,8 @@
 // CONFIGURE YOUR GOOGLE DRIVE/DOCS DOCUMENT LINK HERE
 // Supports both Google Docs (docs.google.com/document) and Google Drive files (.docx)
 // Share it as "Anyone with the link can view", then paste the link or File ID below
-const ARTICLE_GDRIVE_LINK = '1EhKcZF38nU405NWZlkdn4MAccli-hX7m';
-// Google Docs link: https://docs.google.com/document/d/1EhKcZF38nU405NWZlkdn4MAccli-hX7m/edit
+const ARTICLE_GDRIVE_LINK = '1jg41VLV2gsyXIg8NNGakQpJSs-IbFe-e';
+// Google Docs link: https://docs.google.com/document/d/1jg41VLV2gsyXIg8NNGakQpJSs-IbFe-e/edit?usp=sharing&ouid=114067036681459773374&rtpof=true&sd=true
 
 let currentFile = null;
 let currentFileBlob = null;
@@ -12,7 +12,7 @@ let currentGDriveFileId = null;
 let currentGDriveUrl = null;
 
 // Initialize page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('Article page loaded');
     loadSavedFeedback();
     initializeArticleFromConfig();
@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // Extract Google Drive/Docs File ID from URL or ID
 function extractGDriveFileId(input) {
     input = input.trim();
-    
+
     // If it's already just a file ID (no slashes or protocols)
     if (!input.includes('/') && !input.includes(':')) {
         return input;
     }
-    
+
     // Extract from various Google Drive and Google Docs URL formats
     const patterns = [
         /\/document\/d\/([a-zA-Z0-9_-]+)/,  // Google Docs: /document/d/FILE_ID
@@ -35,14 +35,14 @@ function extractGDriveFileId(input) {
         /\/open\?id=([a-zA-Z0-9_-]+)/,      // /open?id=FILE_ID
         /\/d\/([a-zA-Z0-9_-]+)/              // /d/FILE_ID
     ];
-    
+
     for (const pattern of patterns) {
         const match = input.match(pattern);
         if (match && match[1]) {
             return match[1];
         }
     }
-    
+
     return null;
 }
 
@@ -53,10 +53,10 @@ function displayGDriveFileInfo() {
     const fileInfo = document.getElementById('fileInfo');
     const fileName = document.getElementById('fileName');
     const uploadTime = document.getElementById('uploadTime');
-    
+
     gdriveSetup.style.display = 'none';
     fileInfo.style.display = 'block';
-    
+
     fileName.textContent = 'JALT-CALL Article (Google Drive)';
     uploadTime.textContent = `Loaded: ${new Date().toLocaleString()}`;
 }
@@ -85,22 +85,22 @@ function initializeArticleFromConfig() {
         `;
         return;
     }
-    
+
     // Extract file ID from config
     currentGDriveFileId = extractGDriveFileId(ARTICLE_GDRIVE_LINK);
-    
+
     // Set the appropriate URL (Google Docs or Google Drive)
     if (ARTICLE_GDRIVE_LINK.includes('docs.google.com')) {
         currentGDriveUrl = `https://docs.google.com/document/d/${currentGDriveFileId}/edit`;
     } else {
         currentGDriveUrl = `https://drive.google.com/file/d/${currentGDriveFileId}/view`;
     }
-    
+
     if (!currentGDriveFileId) {
         showNotification('Invalid Google Drive link in configuration', 'error');
         return;
     }
-    
+
     // Show file info (document is ready)
     displayGDriveFileInfo();
     console.log('Article loaded from configuration');
@@ -121,11 +121,11 @@ async function displayDocument() {
         showNotification('No document loaded', 'error');
         return;
     }
-    
+
     const documentViewer = document.getElementById('documentViewer');
     const documentContent = document.getElementById('documentContent');
     const feedbackSection = document.getElementById('feedbackSection');
-    
+
     // Show loading indicator
     documentContent.innerHTML = `
         <div class="loading-indicator">
@@ -135,18 +135,18 @@ async function displayDocument() {
     `;
     documentViewer.style.display = 'block';
     documentViewer.scrollIntoView({ behavior: 'smooth' });
-    
+
     try {
         // If we don't have the blob, fetch it from Google Drive/Docs
         if (!currentFileBlob && currentGDriveFileId) {
             let downloadUrl;
             let response;
-            
+
             // Try Google Docs export first (for docs.google.com links)
             try {
                 downloadUrl = `https://docs.google.com/document/d/${currentGDriveFileId}/export?format=docx`;
                 response = await fetch(downloadUrl, { mode: 'cors' });
-                
+
                 if (!response.ok) {
                     throw new Error('Google Docs export failed');
                 }
@@ -156,7 +156,7 @@ async function displayDocument() {
                 try {
                     downloadUrl = `https://drive.google.com/uc?export=download&id=${currentGDriveFileId}`;
                     response = await fetch(downloadUrl, { mode: 'cors' });
-                    
+
                     if (!response.ok) {
                         throw new Error('Google Drive download failed');
                     }
@@ -165,13 +165,13 @@ async function displayDocument() {
                     throw new Error('Failed to download file. Make sure the file is shared as "Anyone with the link can view". If this is a Google Docs file, try downloading it as .docx and uploading to Google Drive instead.');
                 }
             }
-            
+
             currentFileBlob = await response.blob();
         }
-        
+
         // Read file as array buffer
         const arrayBuffer = await currentFileBlob.arrayBuffer();
-        
+
         // Convert with mammoth.js
         const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer }, {
             styleMap: [
@@ -182,20 +182,20 @@ async function displayDocument() {
                 "p[style-name='Subtitle'] => p.subtitle:fresh"
             ]
         });
-        
+
         // Display converted HTML
         documentContent.innerHTML = result.value;
-        
+
         // Show feedback section
         feedbackSection.style.display = 'block';
-        
+
         // Log any warnings
         if (result.messages.length > 0) {
             console.log('Conversion messages:', result.messages);
         }
-        
+
         showNotification('Document loaded successfully!', 'success');
-        
+
     } catch (error) {
         console.error('Error converting document:', error);
         documentContent.innerHTML = `
@@ -219,7 +219,7 @@ function hideDocument() {
 function printDocument() {
     const documentContent = document.getElementById('documentContent');
     const printWindow = window.open('', '', 'height=800,width=800');
-    
+
     printWindow.document.write('<html><head><title>VozVibe Article</title>');
     printWindow.document.write('<style>');
     printWindow.document.write(`
@@ -243,10 +243,10 @@ function printDocument() {
     printWindow.document.write('</style></head><body>');
     printWindow.document.write(documentContent.innerHTML);
     printWindow.document.write('</body></html>');
-    
+
     printWindow.document.close();
     printWindow.focus();
-    
+
     setTimeout(() => {
         printWindow.print();
         printWindow.close();
@@ -259,7 +259,7 @@ function openInGoogleDrive() {
         showNotification('No Google Drive URL available', 'error');
         return;
     }
-    
+
     window.open(currentGDriveUrl, '_blank');
     showNotification('Opening in Google Drive...', 'success');
 }
@@ -268,37 +268,37 @@ function openInGoogleDrive() {
 function submitFeedback() {
     const feedbackInput = document.getElementById('feedbackInput');
     const feedbackText = feedbackInput.value.trim();
-    
+
     if (!feedbackText) {
         showNotification('Please enter your feedback', 'error');
         return;
     }
-    
+
     const feedback = {
         id: Date.now(),
         author: 'Team Member', // Could be made dynamic with login
         text: feedbackText,
         timestamp: new Date().toISOString()
     };
-    
+
     // Save to localStorage
     const feedbacks = JSON.parse(localStorage.getItem('articleFeedback') || '[]');
     feedbacks.unshift(feedback);
     localStorage.setItem('articleFeedback', JSON.stringify(feedbacks));
-    
+
     // Display feedback
     addFeedbackToList(feedback);
-    
+
     // Clear input
     feedbackInput.value = '';
-    
+
     showNotification('Feedback submitted successfully!', 'success');
 }
 
 // Add feedback to list
 function addFeedbackToList(feedback) {
     const feedbackList = document.getElementById('feedbackList');
-    
+
     const feedbackItem = document.createElement('div');
     feedbackItem.className = 'feedback-item';
     feedbackItem.innerHTML = `
@@ -308,7 +308,7 @@ function addFeedbackToList(feedback) {
         </div>
         <div class="feedback-text">${escapeHtml(feedback.text)}</div>
     `;
-    
+
     feedbackList.insertBefore(feedbackItem, feedbackList.firstChild);
 }
 
@@ -316,7 +316,7 @@ function addFeedbackToList(feedback) {
 function loadSavedFeedback() {
     const feedbacks = JSON.parse(localStorage.getItem('articleFeedback') || '[]');
     const feedbackList = document.getElementById('feedbackList');
-    
+
     if (feedbacks.length > 0) {
         feedbacks.forEach(feedback => {
             addFeedbackToList(feedback);
@@ -337,16 +337,16 @@ function formatTimestamp(isoString) {
     const now = new Date();
     const diffMs = now - date;
     const diffMins = Math.floor(diffMs / 60000);
-    
+
     if (diffMins < 1) return 'Just now';
     if (diffMins < 60) return `${diffMins} minute${diffMins > 1 ? 's' : ''} ago`;
-    
+
     const diffHours = Math.floor(diffMins / 60);
     if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-    
+
     const diffDays = Math.floor(diffHours / 24);
     if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-    
+
     return date.toLocaleDateString();
 }
 
@@ -364,11 +364,11 @@ function showNotification(message, type = 'info') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    
+
     let icon = 'info-circle';
     let color = '#3b82f6';
     if (type === 'success') {
@@ -381,7 +381,7 @@ function showNotification(message, type = 'info') {
         icon = 'exclamation-triangle';
         color = '#f59e0b';
     }
-    
+
     notification.innerHTML = `
         <div class="notification-content">
             <i class="fas fa-${icon}"></i>
@@ -391,7 +391,7 @@ function showNotification(message, type = 'info') {
             </button>
         </div>
     `;
-    
+
     // Add styles
     notification.style.cssText = `
         position: fixed;
@@ -407,10 +407,10 @@ function showNotification(message, type = 'info') {
         max-width: 400px;
         animation: slideIn 0.3s ease;
     `;
-    
+
     // Add notification to page
     document.body.appendChild(notification);
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {
