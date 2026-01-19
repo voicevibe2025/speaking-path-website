@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - Download App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Attendance App Specific Styles */
+        .attendance-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .attendance-icon-gradient i {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-icon.attendance {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .download-btn.attendance-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .download-btn.attendance-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.6);
+        }
+
+        .download-btn.attendance-secondary {
+            background: transparent;
+            color: #10b981;
+            border: 2px solid #10b981;
+        }
+
+        .download-btn.attendance-secondary:hover {
+            background: #10b981;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .app-logo-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .app-logo-placeholder i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .feature-card.attendance i {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #10b981;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to VozVibe
+        </a>
+
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="app-logo-placeholder">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                </div>
+                <div class="title-group">
+                    <h1 class="app-title attendance-gradient">Attendance</h1>
+                    <p class="app-owner-highlight">By Adam, S.Pd, M.Pd</p>
+                </div>
+            </div>
+            <p class="tagline">Simple & Efficient Attendance Tracking</p>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <h2 class="welcome-title">Welcome to Attendance</h2>
+                <p class="description">
+                    A simple and efficient attendance tracking application designed to help you
+                    manage and monitor attendance with ease. Perfect for classrooms, events,
+                    and any scenario where attendance tracking is needed.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card attendance">
+                        <i class="fas fa-user-check"></i>
+                        <h3>Easy Check-In</h3>
+                        <p>Quick and simple attendance marking for seamless tracking</p>
+                    </div>
+                    <div class="feature-card attendance">
+                        <i class="fas fa-history"></i>
+                        <h3>Attendance History</h3>
+                        <p>View and manage past attendance records effortlessly</p>
+                    </div>
+                    <div class="feature-card attendance">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Cloud Sync</h3>
+                        <p>Keep your attendance data synchronized across devices</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="download-section">
+                <div class="download-card">
+                    <div class="download-header">
+                        <h2>Download Attendance App</h2>
+                        <p>Get the app for Android devices</p>
+                    </div>
+
+                    <div class="download-info">
+                        <div class="app-info">
+                            <div class="app-icon attendance">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="app-details">
+                                <h3>Attendance for Android</h3>
+                                <p class="version-info">Version 1.0.0</p>
+                                <p class="compatibility">Android 7.0+ required</p>
+                                <p class="last-update">Released: January 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="download-buttons">
+                            <a href="https://drive.google.com/file/d/14Q-pW6k-aqdvZOnGlBPYH1phQ8MGU-H6/view?usp=sharing"
+                                class="download-btn attendance-primary" target="_blank" rel="noopener">
+                                <i class="fas fa-download"></i>
+                                Download from Google Drive
+                            </a>
+                            <button class="download-btn attendance-secondary" onclick="showInstallGuide()">
+                                <i class="fas fa-question-circle"></i>
+                                Installation Guide
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-notice">
+                    <div class="notice-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Important Security Notice</h4>
+                            <p>Since this app is not distributed through Google Play Store, you'll need to enable
+                                "Install from unknown sources" in your Android settings. This is completely safe for our
+                                official Attendance app.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="install-guide" id="installGuide" style="display: none;">
+                <div class="guide-card">
+                    <h3>Installation Instructions</h3>
+                    <ol class="install-steps">
+                        <li>
+                            <strong>Download the APK file</strong>
+                            <p>Click the "Download from Google Drive" button and download the APK file to your device
+                            </p>
+                        </li>
+                        <li>
+                            <strong>Enable Unknown Sources</strong>
+                            <p>Go to Settings > Security > Unknown Sources and enable it (steps may vary by device)</p>
+                        </li>
+                        <li>
+                            <strong>Install the App</strong>
+                            <p>Open the downloaded APK file and follow the installation prompts</p>
+                        </li>
+                        <li>
+                            <strong>Start Tracking</strong>
+                            <p>Launch the Attendance app and start managing your attendance records</p>
+                        </li>
+                    </ol>
+                    <button class="close-guide" onclick="hideInstallGuide()">
+                        <i class="fas fa-times"></i> Close Guide
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2026 Attendance App. All rights reserved.</p>
+                <p class="app-owner">App Owner: Adam, S.Pd., M.Pd.</p>
+                <div class="footer-links">
+                    <a href="index.html">VozVibe</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#support">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showInstallGuide() {
+            document.getElementById('installGuide').style.display = 'block';
+            document.getElementById('installGuide').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideInstallGuide() {
+            document.getElementById('installGuide').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
